@@ -14,7 +14,9 @@
         {% endblock %}
     </head>
     <body>
+        {% if app.user %}            
         <a href="{{ path('app_logout') }}">Deconnexion</a>
+        {% endif %}
         {% block body %}
         {% endblock %}
     </body>
