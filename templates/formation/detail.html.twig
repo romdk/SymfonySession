@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la formation{% endblock %}
+
+{% block body %}
+<h1>{{ formation.nomFormation }}</h1>
+
+<div>
+    <span>Sessions en cours</span>
+    <span>Sessions à venir</span>
+    <span>Sessions passées</span>
+</div>
+<table>
+    <tr>
+        <th>Statut</th>
+        <th>Formation</th>
+        <th>Session</th>
+        <th>Référent</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+        <th>Inscrits</th>
+        <th>Actions</th>
+    </tr>
+{# {% for session in sessions %} #}
+{# <tr> #}
+    {# <td>  #}
+        {# {% if session.statut == 0 %} #}
+        {# <span>Disponible</span> #}
+        {# {% else %} #}
+        {# <span>Indisponible</span> #}
+        {# {% endif %} #}
+    {# </td> #}
+    {# <td>{{ session.nomFormation }}</td> #}
+    {# <td>{{ session.nomSession }}</td> #}
+    {# <td>{{ session.prenomReferent }} {{ session.nomReferent }}</td> #}
+    {# <td>{{ session.dateDebut }}</td> #}
+    {# <td>{{ session.dateFin }}</td> #}
+    {# <td>{{ session.nbPlacesReserves }}/{{ session.nbPlacesTotal }}</td> #}
+    {# <td><i class="fa-solid fa-arrow-up-right-from-square"></i></td> #}
+{# </tr> #}
+    
+{# {% endfor %} #}
+</table>
+{% endblock %}
