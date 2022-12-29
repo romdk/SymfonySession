@@ -14,8 +14,17 @@
         {% endblock %}
     </head>
     <body>
-        {% if app.user %}            
-        <a href="{{ path('app_logout') }}">Deconnexion</a>
+        {% if app.user %}
+            <nav>
+                <ul>
+                    <li><span>{{ app.user.pseudo }}</span></li>
+                    <li><a href="{{ path('app_formation') }}">Formations</a></li>   
+                    <li><a href="{{ path('app_session') }}">Sessions</a></li>   
+                    <li><a href="{{ path('app_stagiaire') }}">Stagiaires</a></li>   
+                    <li><a href="">Mon profil</a></li>   
+                    <li><a class="btnDeconnexion" href="{{ path('app_logout') }}">Deconnexion</a></li>
+                </ul>                
+            </nav>
         {% endif %}
         {% block body %}
         {% endblock %}
