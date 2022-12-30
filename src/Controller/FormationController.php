@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Formation;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,12 +22,20 @@ class FormationController extends AbstractController
     }
 
     #[Route('/formation/{id}', name: 'detail_formation')]
-    public function detail(Formation $formation): Response
+    public function detail(Formation $formation, ManagerRegistry $doctrine): Response
     {   
-        // $sessions = $doctrine->getRepository(Session::class)->findByFormation();
+        $today = date('d/m/Y');
+        $sessions = $doctrine->getRepository(Session::class)->findBy([],['dateDebut' => 'ASC']);
+        // $pastSessions = $doctrine->getRepository(Session::class)->findBy(['formationId' == '{id}' && 'dateFin' < $today],['dateDebut' => 'ASC']);
+        // $currentSessions = $doctrine->getRepository(Session::class)->findBy(['formationId' == '{id}' && 'dateDebut' < $today && 'dateFin' > $today],['dateDebut' => 'ASC']);
+        // $upcomingSessions = $doctrine->getRepository(Session::class)->findBy(['formationId' == '{id}' && 'dateDebut' > $today],['dateDebut' => 'ASC']);
         return $this->render('formation/detail.html.twig', [
             'formation' => $formation,
-            // 'sessions' => $sessions
+            'today' => $today,
+            'sessions' => $sessions,
+            // 'pastSessions' => $pastSessions,
+            // 'currentSessions' => $currentSessions,
+            // 'upcomingSessions' => $upcomingSessions,
         ]);
     }
 
