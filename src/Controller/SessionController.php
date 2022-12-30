@@ -14,11 +14,17 @@ class SessionController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         // récuperer les sessions de la bdd
-        $sessions = $doctrine->getRepository(Session::class)->findAll();
         $today = date('d/m/Y');
+        $sessions = $doctrine->getRepository(Session::class)->findBy([],['dateDebut' => 'ASC']);
+        // $pastSessions = $doctrine->getRepository(Session::class)->findBy(['dateFin' < $today],['dateDebut' => 'ASC']);
+        // $currentSessions = $doctrine->getRepository(Session::class)->findBy(['dateDebut' < $today && 'dateFin' > $today],['dateDebut' => 'ASC']);
+        // $upcomingSessions = $doctrine->getRepository(Session::class)->findBy(['dateDebut' > $today],['dateDebut' => 'ASC']);
         return $this->render('session/index.html.twig', [
-            'sessions' => $sessions,
             'today' => $today,
+            'sessions' => $sessions,
+            // 'pastSessions' => $pastSessions,
+            // 'currentSessions' => $currentSessions,
+            // 'upcomingSessions' => $upcomingSessions,
         ]);
     }
 }
