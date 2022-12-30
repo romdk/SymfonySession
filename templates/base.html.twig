@@ -6,27 +6,26 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
     </head>
-    <body>
-        {% if app.user %}
+    {% if app.user %}
             <nav>
+                {# <span id="imageProfil"><img src="{{ asset('images/' ~ {{ app.user.image }}) }}" alt=""></span> #}
+                <span id="pseudo">{{ app.user.pseudo }}</span>
                 <ul>
-                    <li><span>{{ app.user.pseudo }}</span></li>
-                    <li><a href="{{ path('app_formation') }}">Formations</a></li>   
-                    <li><a href="{{ path('app_session') }}">Sessions</a></li>   
-                    <li><a href="{{ path('app_stagiaire') }}">Stagiaires</a></li>   
-                    <li><a href="">Mon profil</a></li>   
-                    <li><a class="btnDeconnexion" href="{{ path('app_logout') }}">Deconnexion</a></li>
+                    <li><a id="btnFormations" class="btnActive" href="{{ path('app_formation') }}">Formations</a></li>   
+                    <li><a id="btnSessions" href="{{ path('app_session') }}">Sessions</a></li>   
+                    <li><a id="btnStagiaires" href="{{ path('app_stagiaire') }}">Stagiaires</a></li>   
+                    <li><a id="btnProfil" href="">Mon profil</a></li>   
+                    <li><a id="btnDeconnexion" href="{{ path('app_logout') }}">Deconnexion</a></li>
                 </ul>                
             </nav>
-        {% endif %}
-        {% block body %}
-        {% endblock %}
-    </body>
+            {% endif %}
+            {% block body %}
+            {% endblock %}
+            {% block javascripts %}
+                <script src="{{ asset('js/script.js') }}"></script>
+            {% endblock %}
 </html>

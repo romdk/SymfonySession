@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Prompt', sans-serif;
+    text-decoration: none;
+    overflow-x: hidden;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 200px;
+    background-image: linear-gradient(
+        45deg,
+        hsl(200deg 37% 8%) 0%,
+        hsl(194deg 25% 13%) 50%,
+        hsl(189deg 15% 18%) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav #pseudo{
+    color: #F1F1F1;
+    font-size: 1.5rem;
+}
+
+nav ul{
+    margin-top: 200px;
+}
+
+nav li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+nav li a{
+    width: 150px;
+    height: 30px;
+    padding: 0 20px;
+    border-radius: 5px;
+    color: #8c8c8c;
+    background-color: #0084ff00;
+    text-transform: uppercase;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    transition: .3s;
+}
+
+nav li a:hover{
+    color: #F1F1F1;
+}
+
+nav .btnActive{
+    background-color: #0085FF;
+    color: #F1F1F1;
+}
+
+nav #btnDeconnexion{
+    position: absolute;
+    bottom: 20px;
+    width: 150px;
+    height: 30px;
+    padding: 0 20px;
+    border-radius: 5px;
+    color: #F1F1F1;
+    background-color: #892E2E;
+    text-transform: uppercase;
+}
+
+nav #btnDeconnexion:hover{
+    background-color: #5f2121;
+}
+
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F1F1F1;
+}
+
+.formations{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 210px;
+    width: 1240px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* background-color: red; */
+}
+
+.formations .card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 200px;
+    background-color: #2A3436;
+    color: #F1F1F1;
+}
