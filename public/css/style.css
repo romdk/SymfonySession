@@ -9,6 +9,73 @@
     overflow-x: hidden;
 }
 
+#loginMain{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(
+        45deg,
+        hsl(200deg 37% 8%) 0%,
+        hsl(194deg 25% 13%) 50%,
+        hsl(189deg 15% 18%) 100%
+    );
+}
+
+.login{
+    background-color:#F1F1F1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
+}
+
+.login h1{
+    font-weight: 300;
+}
+
+.email{
+    width: 90%;
+    background-color: #e2e2e2;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.password{
+    width: 90%;
+    background-color: #e2e2e2;
+    border-radius: 5px;
+    border: none;   
+    outline: none;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.btnConnexion{
+    width: 100px;
+    background-color: #0085FF;
+    border-radius: 5px;
+    height: 30px;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    color: #F1F1F1;
+    transition: .3s;
+}
+
+.btnConnexion:hover{
+    cursor: pointer;
+    background-color: #0a74d8;
+}
+
 nav{
     position: fixed;
     top: 0;
@@ -60,11 +127,6 @@ nav li a:hover{
     color: #F1F1F1;
 }
 
-nav .btnActive{
-    background-color: #0085FF;
-    color: #F1F1F1;
-}
-
 nav #btnDeconnexion{
     position: absolute;
     bottom: 20px;
@@ -112,3 +174,76 @@ body{
     background-color: #2A3436;
     color: #F1F1F1;
 }
+
+#sessionMain{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#sessionMain h1{
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+#detailMain{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#detailMain h1{
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.selecteur{
+    height: fit-content;
+    margin-top: 20px;
+    padding: 5px 0;
+    background-color: #e2e2e2;
+    border-radius: 5px;
+}
+
+.selecteur span{
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition: .3s;
+}
+
+.selecteur span:hover:not(.btnActive){
+    cursor: pointer;
+    background-color:#cbcbcb;
+}
+
+.btnActive{
+    background-color: #0085FF;
+    color: #F1F1F1;
+}
+
+.tables{
+margin-top: 20px;
+}
+
+#currentSession{
+    background-color: rgb(166, 96, 96);
+}
+
+#upcomingSession{
+    display: none;
+    background-color: rgb(122, 165, 122);
+}
+
+#pastSession{
+    display: none;
+    background-color: rgb(133, 133, 172);
+}
+
