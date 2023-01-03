@@ -12,7 +12,7 @@
     </head>
     {% if app.user %}
             <nav>
-                {# <span id="imageProfil"><img src="{{ asset('images/' ~ {{ app.user.image }}) }}" alt=""></span> #}
+                <span id="imageProfil"><img src="{{ asset('images/' ~ app.user.image ) }}" alt=""></span>
                 <span id="pseudo">{{ app.user.pseudo }}</span>
                 <ul>
                     <li><a id="btnFormations" class="btnActive" href="{{ path('app_formation') }}">Formations</a></li>   

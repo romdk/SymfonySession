@@ -93,6 +93,22 @@ nav{
     align-items: center;
 }
 
+nav #imageProfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+nav #imageProfil img{
+    height: 150px;
+    object-fit:cover;
+}
+
 nav #pseudo{
     color: #F1F1F1;
     font-size: 1.5rem;
@@ -233,16 +249,16 @@ body{
 margin-top: 20px;
 }
 
-#currentSession{
+#currentSessions{
     background-color: rgb(166, 96, 96);
 }
 
-#upcomingSession{
+#upcomingSessions{
     display: none;
     background-color: rgb(122, 165, 122);
 }
 
-#pastSession{
+#pastSessions{
     display: none;
     background-color: rgb(133, 133, 172);
 }
