@@ -13,7 +13,7 @@
         <span id="pastBtn">Sessions passées</span>
     </div>
     <div class="tables">
-        <table id="currentSession">
+        <table id="currentSessions">
             <tr>
                 <th>Statut</th>
                 <th>Formation</th>
@@ -24,7 +24,7 @@
                 <th>Inscrits</th>
                 <th>Actions</th>
             </tr>
-            {% for session in sessions %}
+            {% for session in currentSessions %}
             <tr>
                 <td> 
                     {% if today > session.dateDebut and today < session.dateFin %}
@@ -47,7 +47,7 @@
             </tr>                
             {% endfor %}
         </table>           
-        <table id="upcomingSession">
+        <table id="upcomingSessions">
             <tr>
                 <th>Statut</th>
                 <th>Formation</th>
@@ -58,7 +58,7 @@
                 <th>Inscrits</th>
                 <th>Actions</th>
             </tr>
-            {% for session in sessions %}
+            {% for session in upcomingSessions %}
             <tr>
                 <td> 
                     {% if today > session.dateDebut and today < session.dateFin %}
@@ -81,7 +81,7 @@
             </tr>                
             {% endfor %}
         </table>           
-        <table id="pastSession">
+        <table id="pastSessions">
             <tr>
                 <th>Statut</th>
                 <th>Formation</th>
@@ -92,7 +92,7 @@
                 <th>Inscrits</th>
                 <th>Actions</th>
             </tr>
-            {% for session in sessions %}
+            {% for session in pastSessions %}
             <tr>
                 <td> 
                     {% if today > session.dateDebut and today < session.dateFin %}
