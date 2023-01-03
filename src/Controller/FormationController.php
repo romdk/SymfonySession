@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Session;
 use App\Entity\Formation;
+use App\Repository\SessionRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -22,20 +24,20 @@ class FormationController extends AbstractController
     }
 
     #[Route('/formation/{id}', name: 'detail_formation')]
-    public function detail(Formation $formation, ManagerRegistry $doctrine): Response
+    public function detail(Formation $formation, ManagerRegistry $doctrine, SessionRepository $sr, Request $request): Response
     {   
         $today = date('d/m/Y');
-        $sessions = $doctrine->getRepository(Session::class)->findBy([],['dateDebut' => 'ASC']);
-        // $pastSessions = $doctrine->getRepository(Session::class)->findBy(['formationId' == '{id}' && 'dateFin' < $today],['dateDebut' => 'ASC']);
-        // $currentSessions = $doctrine->getRepository(Session::class)->findBy(['formationId' == '{id}' && 'dateDebut' < $today && 'dateFin' > $today],['dateDebut' => 'ASC']);
-        // $upcomingSessions = $doctrine->getRepository(Session::class)->findBy(['formationId' == '{id}' && 'dateDebut' > $today],['dateDebut' => 'ASC']);
+        $id = $request->attributes->get('_route_params');
+
+        $pastSessions = $sr->findPastSessionsByFormation($id);
+        $currentSessions = $sr->findCurrentSessionsByFormation($id);
+        $upcomingSessions = $sr->findUpcomingSessionsByFormation($id);
         return $this->render('formation/detail.html.twig', [
             'formation' => $formation,
             'today' => $today,
-            'sessions' => $sessions,
-            // 'pastSessions' => $pastSessions,
-            // 'currentSessions' => $currentSessions,
-            // 'upcomingSessions' => $upcomingSessions,
+            'pastSessions' => $pastSessions,
+            'currentSessions' => $currentSessions,
+            'upcomingSessions' => $upcomingSessions,
         ]);
     }
 
