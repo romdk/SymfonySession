@@ -39,6 +39,80 @@ class SessionRepository extends ServiceEntityRepository
         }
     }
 
+    public function findPastSessions()
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('s')
+        ->where('s.dateFin < :now')
+        ->setParameter('now', $now)
+        ->orderBy('s.dateDebut', 'ASC')
+        ->getQuery()
+        ->getResult();
+    }
+    
+    public function findCurrentSessions()
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('s')
+        ->where('s.dateDebut < :now')
+        ->setParameter('now', $now)
+        ->andWhere('s.dateFin >'.date('d/m/Y'))
+        ->orderBy('s.dateDebut', 'ASC')
+        ->getQuery()
+        ->getResult();
+    }
+    
+    public function findUpcomingSessions()
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('s')
+        ->where('s.dateDebut > :now')
+        ->setParameter('now', $now)
+        ->orderBy('s.dateDebut', 'ASC')
+        ->getQuery()
+        ->getResult();
+    }
+
+    public function findPastSessionsByFormation($id)
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('s')
+        ->where('s.dateFin < :now')
+        ->andWhere('s.formation = :id')
+        ->setParameter('now', $now)
+        ->setParameter('id', $id)
+        ->orderBy('s.dateDebut', 'ASC')
+        ->getQuery()
+        ->getResult();
+    }
+    
+    public function findCurrentSessionsByFormation($id)
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('s')
+        ->where('s.dateDebut < :now')
+        ->andWhere('s.dateFin > :now')
+        ->andWhere('s.formation = :id')
+        ->setParameter('now', $now)
+        ->setParameter('id', $id)
+        ->orderBy('s.dateDebut', 'ASC')
+        ->getQuery()
+        ->getResult();
+    }
+    
+    public function findUpcomingSessionsByFormation($id)
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('s')
+        ->where('s.dateDebut > :now')
+        ->andWhere('s.formation = :id')
+        ->setParameter('now', $now)
+        ->setParameter('id', $id)
+        ->orderBy('s.dateDebut', 'ASC')
+        ->getQuery()
+        ->getResult();
+    }
+
 //    /**
 //     * @return Session[] Returns an array of Session objects
 //     */
