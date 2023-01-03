@@ -36,33 +36,33 @@ btnProfil.addEventListener('click', () => {
 const currentBtn = document.getElementById('currentBtn')
 const upcomingBtn = document.getElementById('upcomingBtn')
 const pastBtn = document.getElementById('pastBtn')
-const currentSession = document.getElementById('currentSession')
-const upcomingSession = document.getElementById('upcomingSession')
-const pastSession = document.getElementById('pastSession')
+const currentSessions = document.getElementById('currentSessions')
+const upcomingSessions = document.getElementById('upcomingSessions')
+const pastSessions = document.getElementById('pastSessions')
 
 currentBtn.addEventListener('click', () => {
     currentBtn.classList.add('btnActive')
     upcomingBtn.classList.remove('btnActive')
     pastBtn.classList.remove('btnActive')  
-    currentSession.style.display = 'block'  
-    upcomingSession.style.display = 'none'  
-    pastSession.style.display = 'none'  
+    currentSessions.style.display = 'block'  
+    upcomingSessions.style.display = 'none'  
+    pastSessions.style.display = 'none'  
 })
 
 upcomingBtn.addEventListener('click', () => {
     currentBtn.classList.remove('btnActive')
     upcomingBtn.classList.add('btnActive')
     pastBtn.classList.remove('btnActive')
-    currentSession.style.display = 'none'  
-    upcomingSession.style.display = 'block'  
-    pastSession.style.display = 'none'   
+    currentSessions.style.display = 'none'  
+    upcomingSessions.style.display = 'block'  
+    pastSessions.style.display = 'none'   
 })
 
 pastBtn.addEventListener('click', () => {
     currentBtn.classList.remove('btnActive')
     upcomingBtn.classList.remove('btnActive')
     pastBtn.classList.add('btnActive')
-    currentSession.style.display = 'none'  
-    upcomingSession.style.display = 'none'  
-    pastSession.style.display = 'block'     
+    currentSessions.style.display = 'none'  
+    upcomingSessions.style.display = 'none'  
+    pastSessions.style.display = 'block'     
 })
