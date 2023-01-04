@@ -28,12 +28,6 @@ class Session
     #[ORM\Column]
     private ?int $nbPlacesTotal = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $nbPlacesReserves = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $nbPlacesLibres = null;
-
     #[ORM\ManyToOne(inversedBy: 'sessions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Referent $referent = null;
@@ -41,9 +35,6 @@ class Session
     #[ORM\ManyToOne(inversedBy: 'sessions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Formation $formation = null;
-
-    #[ORM\ManyToMany(targetEntity: Cours::class, inversedBy: 'sessions')]
-    private Collection $cours;
 
     #[ORM\ManyToMany(targetEntity: Stagiaire::class, mappedBy: 'sessions')]
     private Collection $stagiaires;
@@ -107,30 +98,6 @@ class Session
         return $this;
     }
 
-    public function getNbPlacesReserves(): ?int
-    {
-        return $this->nbPlacesReserves;
-    }
-
-    public function setNbPlacesReserves(?int $nbPlacesReserves): self
-    {
-        $this->nbPlacesReserves = $nbPlacesReserves;
-
-        return $this;
-    }
-
-    public function getNbPlacesLibres(): ?int
-    {
-        return $this->nbPlacesLibres;
-    }
-
-    public function setNbPlacesLibres(?int $nbPlacesLibres): self
-    {
-        $this->nbPlacesLibres = $nbPlacesLibres;
-
-        return $this;
-    }
-
     public function getReferent(): ?Referent
     {
         return $this->referent;
@@ -151,30 +118,6 @@ class Session
     public function setFormation(?Formation $formation): self
     {
         $this->formation = $formation;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Cours>
-     */
-    public function getCours(): Collection
-    {
-        return $this->cours;
-    }
-
-    public function addCour(Cours $cour): self
-    {
-        if (!$this->cours->contains($cour)) {
-            $this->cours->add($cour);
-        }
-
-        return $this;
-    }
-
-    public function removeCour(Cours $cour): self
-    {
-        $this->cours->removeElement($cour);
 
         return $this;
     }
