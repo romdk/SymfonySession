@@ -45,7 +45,6 @@ class Session
 
     public function __construct()
     {
-        $this->cours = new ArrayCollection();
         $this->stagiaires = new ArrayCollection();
     }
 
