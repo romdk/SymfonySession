@@ -39,6 +39,10 @@ class Session
     #[ORM\ManyToMany(targetEntity: Stagiaire::class, mappedBy: 'sessions')]
     private Collection $stagiaires;
 
+    #[ORM\ManyToOne(inversedBy: 'sessions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Programme $programme = null;
+
     public function __construct()
     {
         $this->cours = new ArrayCollection();
@@ -145,6 +149,18 @@ class Session
         if ($this->stagiaires->removeElement($stagiaire)) {
             $stagiaire->removeSession($this);
         }
+
+        return $this;
+    }
+
+    public function getProgramme(): ?Programme
+    {
+        return $this->programme;
+    }
+
+    public function setProgramme(?Programme $programme): self
+    {
+        $this->programme = $programme;
 
         return $this;
     }
