@@ -55,8 +55,8 @@ class SessionRepository extends ServiceEntityRepository
         $now = new \DateTime();
         return $this->createQueryBuilder('s')
         ->where('s.dateDebut < :now')
+        ->andWhere('s.dateFin > :now')
         ->setParameter('now', $now)
-        ->andWhere('s.dateFin >'.date('d/m/Y'))
         ->orderBy('s.dateDebut', 'ASC')
         ->getQuery()
         ->getResult();
