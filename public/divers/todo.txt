@@ -1,2 +1,1 @@
 selecteur qui reste apres refresh
-bdd image par défaut quand on créer user
