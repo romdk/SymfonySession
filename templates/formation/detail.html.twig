@@ -30,18 +30,17 @@
                     <span>En cours</span>
                     {% elseif today > session.dateFin  %}
                     <span>Terminée</span>
-                    {% elseif today < session.dateDebut and session.nbPlacesLibres == 0 %}
+                    {# {% elseif today < session.dateDebut and session.nbPlacesLibres == 0 %}
                     <span>Complet</span>
                     {% elseif today < session.dateDebut and session.nbPlacesLibres > 0 %}
-                    <span>Disponible</span>   
+                    <span>Disponible</span>    #}
                     {% endif %}
                 </td>
-                {# <td>{{ session.nomFormation }}</td> #}
                 <td>{{ session.nomSession }}</td>
                 {# <td>{{ session.prenomReferent }} {{ session.nomReferent }}</td> #}
                 <td>{{ session.dateDebut | date('d/m/Y') }}</td>
                 <td>{{ session.dateFin | date('d/m/Y')  }}</td>
-                <td>{{ session.nbPlacesReserves }}/{{ session.nbPlacesTotal }}</td>
+                {# <td>{{ session.nbPlacesReserves }}/{{ session.nbPlacesTotal }}</td> #}
                 <td><i class="fa-solid fa-arrow-up-right-from-square"></i></td>
             </tr>                
             {% endfor %}
@@ -64,10 +63,10 @@
                     <span>En cours</span>
                     {% elseif today > session.dateFin  %}
                     <span>Terminée</span>
-                    {% elseif today < session.dateDebut and session.nbPlacesLibres == 0 %}
+                    {# {% elseif today < session.dateDebut and session.nbPlacesLibres == 0 %}
                     <span>Complet</span>
                     {% elseif today < session.dateDebut and session.nbPlacesLibres > 0 %}
-                    <span>Disponible</span>   
+                    <span>Disponible</span>    #}
                     {% endif %}
                 </td>
                 {# <td>{{ session.nomFormation }}</td> #}
@@ -75,7 +74,7 @@
                 {# <td>{{ session.prenomReferent }} {{ session.nomReferent }}</td> #}
                 <td>{{ session.dateDebut | date('d/m/Y') }}</td>
                 <td>{{ session.dateFin | date('d/m/Y')  }}</td>
-                <td>{{ session.nbPlacesReserves }}/{{ session.nbPlacesTotal }}</td>
+                {# <td>{{ session.nbPlacesReserves }}/{{ session.nbPlacesTotal }}</td> #}
                 <td><i class="fa-solid fa-arrow-up-right-from-square"></i></td>
             </tr>                
             {% endfor %}
@@ -98,10 +97,10 @@
                     <span>En cours</span>
                     {% elseif today > session.dateFin  %}
                     <span>Terminée</span>
-                    {% elseif today < session.dateDebut and session.nbPlacesLibres == 0 %}
+                    {# {% elseif today < session.dateDebut and session.nbPlacesLibres == 0 %}
                     <span>Complet</span>
                     {% elseif today < session.dateDebut and session.nbPlacesLibres > 0 %}
-                    <span>Disponible</span>   
+                    <span>Disponible</span>    #}
                     {% endif %}
                 </td>
                 {# <td>{{ session.nomFormation }}</td> #}
@@ -109,7 +108,7 @@
                 {# <td>{{ session.prenomReferent }} {{ session.nomReferent }}</td> #}
                 <td>{{ session.dateDebut | date('d/m/Y') }}</td>
                 <td>{{ session.dateFin | date('d/m/Y')  }}</td>
-                <td>{{ session.nbPlacesReserves }}/{{ session.nbPlacesTotal }}</td>
+                {# <td>{{ session.nbPlacesReserves }}/{{ session.nbPlacesTotal }}</td> #}
                 <td><i class="fa-solid fa-arrow-up-right-from-square"></i></td>
             </tr>                
             {% endfor %}
