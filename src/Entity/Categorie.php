@@ -18,12 +18,12 @@ class Categorie
     #[ORM\Column(length: 50)]
     private ?string $nomCategorie = null;
 
-    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Cours::class, orphanRemoval: true)]
-    private Collection $cours;
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Module::class)]
+    private Collection $modules;
 
     public function __construct()
     {
-        $this->cours = new ArrayCollection();
+        $this->modules = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -44,29 +44,29 @@ class Categorie
     }
 
     /**
-     * @return Collection<int, Cours>
+     * @return Collection<int, Module>
      */
-    public function getCours(): Collection
+    public function getModules(): Collection
     {
-        return $this->cours;
+        return $this->modules;
     }
 
-    public function addCour(Cours $cour): self
+    public function addModule(Module $module): self
     {
-        if (!$this->cours->contains($cour)) {
-            $this->cours->add($cour);
-            $cour->setCategorie($this);
+        if (!$this->modules->contains($module)) {
+            $this->modules->add($module);
+            $module->setCategorie($this);
         }
 
         return $this;
     }
 
-    public function removeCour(Cours $cour): self
+    public function removeModule(Module $module): self
     {
-        if ($this->cours->removeElement($cour)) {
+        if ($this->modules->removeElement($module)) {
             // set the owning side to null (unless already changed)
-            if ($cour->getCategorie() === $this) {
-                $cour->setCategorie(null);
+            if ($module->getCategorie() === $this) {
+                $module->setCategorie(null);
             }
         }
 
