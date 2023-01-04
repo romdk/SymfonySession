@@ -24,8 +24,9 @@ class FormationController extends AbstractController
     }
 
     #[Route('/formation/{id}', name: 'detail_formation')]
-    public function detail(Formation $formation, ManagerRegistry $doctrine, SessionRepository $sr, Request $request): Response
+    public function detail(Formation $formation, ManagerRegistry $doctrine, SessionRepository $sr, Request $request, Session $session): Response
     {   
+        $placesReserve = count($session->getStagiaires());
         $today = date('d/m/Y');
         $id = $request->attributes->get('_route_params');
 
@@ -33,6 +34,7 @@ class FormationController extends AbstractController
         $currentSessions = $sr->findCurrentSessionsByFormation($id);
         $upcomingSessions = $sr->findUpcomingSessionsByFormation($id);
         return $this->render('formation/detail.html.twig', [
+            'placesReserve' => $placesReserve,
             'formation' => $formation,
             'today' => $today,
             'pastSessions' => $pastSessions,
