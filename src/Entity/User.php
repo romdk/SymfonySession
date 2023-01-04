@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $pseudo = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    private ?string $image = 'default.png';
 
     public function getId(): ?int
     {
