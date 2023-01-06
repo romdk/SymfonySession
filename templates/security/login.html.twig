@@ -9,11 +9,9 @@
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
+        {# {% if app.user %}
+        {% do redirect('/formation') %}
+        {% endif %} #}
         <div class="login">
             <h1>Connexion</h1>
             <input class="email" type="email" placeholder="Saisir votre email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
