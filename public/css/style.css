@@ -298,15 +298,26 @@ tr:nth-child(odd){
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     height: 100vh;
+    width: 88vw;
+}
+
+#stagiairesMain h1{
+    width: 100%;
+    text-align: center;
 }
 
 #stagiairesMain .stagiaires{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 80%;
+    width: 60%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
 }
 
 #stagiairesMain .stagiaire {
@@ -314,11 +325,34 @@ tr:nth-child(odd){
     padding: 0 10px;
     border-radius: 20px;
     color: #f1f1f1;
-    background-image: linear-gradient(
-        45deg,
-        hsl(200deg 37% 8%) 0%,
-        hsl(194deg 25% 13%) 50%,
-        hsl(189deg 15% 18%) 100%
-    );    
+    background-color: rgb(26, 49, 63); 
+    transition: .3s;
+}
+
+#stagiairesMain .stagiaire:hover {
+    background-color: #0a74d8;     
+}
+
+#stagiairesMain .searchBar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#stagiairesMain #searchBar {
+    outline: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 30   0px;
+    border: none;
+    background-color: #e2e2e2;
+}
+
+#stagiairesMain ul {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
