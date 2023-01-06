@@ -19,7 +19,7 @@ class StagiaireType extends AbstractType
             ->add('ville')
             ->add('email')
             ->add('telephone')
-            ->add('sessions')
+            // ->add('sessions')
         ;
     }
 

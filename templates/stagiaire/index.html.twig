@@ -15,6 +15,13 @@
             </li>
             {% endfor %}
         </ul>
+        <button id="btnAjout">Ajouter un stagiaire</button>
+        <div id="overlay">
+            <div class="form">{{ form(formAddStagiaire) }}
+                <i id="btnFermer" class="fa-solid fa-xmark"></i>
+            </div>    
+        </div>
     </div>
     </main>  
 {% endblock %}
+
