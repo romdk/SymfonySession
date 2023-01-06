@@ -356,3 +356,55 @@ tr:nth-child(odd){
     gap: 10px;
 }
 
+#stagiairesMain #btnAjout {
+    margin-top: 20px;
+    background-color: rgb(14, 174, 14);
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: #f1f1f1;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: .3s;
+}
+
+#stagiairesMain #btnAjout:hover {
+    background-color: green;
+    cursor: pointer;
+}
+
+#stagiairesMain #overlay {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 88vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.678);
+    z-index: 999;
+}
+
+#stagiairesMain #overlay .form{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 800px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#stagiairesMain #overlay .form .fa-xmark{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 1.7rem;
+    color: rgb(161, 26, 26);
+}
+
+#stagiairesMain #overlay .form .fa-xmark:hover{
+    cursor: pointer;    
+}
+
+
