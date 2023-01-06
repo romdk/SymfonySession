@@ -21,4 +21,13 @@ class StagiaireController extends AbstractController
             'stagiaires' => $stagiaires
         ]);
     }
+
+    #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
+    public function detail(Stagiaire $stagiaire, ManagerRegistry $doctrine, Request $request, Session $session): Response
+    {   
+        // $id = $request->attributes->get('_route_params');
+
+        return $this->render('stagiaire/detail.html.twig', [
+        ]);
+    }
 }
