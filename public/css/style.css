@@ -356,7 +356,14 @@ tr:nth-child(odd){
     gap: 10px;
 }
 
-#stagiairesMain #btnAjout {
+#divBtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btnAjout {
     margin-top: 20px;
     background-color: rgb(14, 174, 14);
     padding: 5px 10px;
@@ -368,12 +375,12 @@ tr:nth-child(odd){
     transition: .3s;
 }
 
-#stagiairesMain #btnAjout:hover {
+#btnAjout:hover {
     background-color: green;
     cursor: pointer;
 }
 
-#stagiairesMain #overlay {
+#overlay {
     position: absolute;
     display: none;
     justify-content: center;
@@ -384,7 +391,7 @@ tr:nth-child(odd){
     z-index: 999;
 }
 
-#stagiairesMain #overlay .form{
+#overlay .form{
     position: relative;
     display: flex;
     flex-direction: row;
@@ -395,7 +402,7 @@ tr:nth-child(odd){
     border-radius: 5px;
 }
 
-#stagiairesMain #overlay .form .fa-xmark{
+#overlay .form .fa-xmark{
     position: absolute;
     top: 8px;
     right: 10px;
@@ -403,8 +410,49 @@ tr:nth-child(odd){
     color: rgb(161, 26, 26);
 }
 
-#stagiairesMain #overlay .form .fa-xmark:hover{
+#overlay .form .fa-xmark:hover{
     cursor: pointer;    
 }
+
+#overlay .form .nomPrenom{
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+#overlay .form .sexeDateNaissanceVille{
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+#overlay .form .emailTelephone{
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+#overlay .form .btnAjouter{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.actions{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* #upcomingSessions .actions{
+    display: flex;
+    justify-content: center;
+} */
+
+
 
 
