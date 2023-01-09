@@ -28,4 +28,13 @@ class SessionController extends AbstractController
             'upcomingSessions' => $upcomingSessions,
         ]);
     }
+
+    #[Route('/session/{id}/delete', name: 'delete_session')]
+    public function delete(ManagerRegistry $doctrine, Session $session) {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_session');
+    }
 }

@@ -41,7 +41,7 @@
                 <td>{{ session.dateDebut | date('d/m/Y') }}</td>
                 <td>{{ session.dateFin | date('d/m/Y')  }}</td> 
                 <td>{{ placesReserve }}/{{ session.nbPlacesTotal }}</td>
-                <td><i class="fa-solid fa-arrow-up-right-from-square"></i><i class="fa-solid fa-xmark"></i></td>
+                <td class="actions"><i class="fa-solid fa-arrow-up-right-from-square"></i></td>
             </tr>                
             {% endfor %}
         </table>           
@@ -73,7 +73,7 @@
                 <td>{{ session.dateDebut | date('d/m/Y') }}</td>
                 <td>{{ session.dateFin | date('d/m/Y')  }}</td>
                 <td>{{ placesReserve }}/{{ session.nbPlacesTotal }}</td>
-                <td><i class="fa-solid fa-arrow-up-right-from-square"></i></td>
+                <td class="actions"><i class="fa-solid fa-arrow-up-right-from-square"></i><a href="{{ path('delete_detail_formation', {'id': session.id}) }}"><i class="fa-solid fa-xmark"></i></a></td>
             </tr>                
             {% endfor %}
         </table>           
@@ -105,10 +105,13 @@
                 <td>{{ session.dateDebut | date('d/m/Y') }}</td>
                 <td>{{ session.dateFin | date('d/m/Y')  }}</td>
                 <td>{{ placesReserve }}/{{ session.nbPlacesTotal }}</td>
-                <td><i class="fa-solid fa-arrow-up-right-from-square"></i></td>
+                <td class="actions"><i class="fa-solid fa-arrow-up-right-from-square"></i></td>
             </tr>                
             {% endfor %}
         </table>
     </div>       
 </main>
+{% endblock %}
+{% block javascripts %}
+                <script src="{{ asset('js/sessionScript.js') }}"></script>
 {% endblock %}

@@ -43,4 +43,13 @@ class FormationController extends AbstractController
         ]);
     }
 
+    #[Route('/formation/{id}/delete', name: 'delete_detail_formation')]
+    public function delete(ManagerRegistry $doctrine, Session $session) {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('detail_formation');
+    }
+
 }
