@@ -1,1 +1,17 @@
-selecteur qui reste apres refresh
+nav : selecteur qui reste apres refresh
+
+details formation : rediretion supp session
+
+liste sessions : afficher nb d'inscrits session
+                 actions sessions -> voir details
+                 ajout session
+
+details session : aff liste inscrits
+                  afficher programme/modules
+                  ajout/modifier/suppr module
+
+liste stagiaires : input select ajout stagiaire
+
+liste formations : formulaire d'ajout formation
+
+
