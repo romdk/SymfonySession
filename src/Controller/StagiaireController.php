@@ -16,6 +16,10 @@ class StagiaireController extends AbstractController
     #[Route('/stagiaire', name: 'app_stagiaire')]
     public function index(ManagerRegistry $doctrine, Stagiaire $stagiaire = null, Request $request): Response
     {
+        if(!$stagiaire) {
+            $stagiaire = new Stagiaire();
+        }
+
         $stagiaires = $doctrine->getRepository(Stagiaire::class)->findAll();
         $form = $this->createForm(StagiaireType::class, $stagiaire);
         $form->handleRequest($request);
@@ -35,11 +39,39 @@ class StagiaireController extends AbstractController
     }
 
     #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
-    public function detail(Stagiaire $stagiaire, ManagerRegistry $doctrine, Request $request, Session $session): Response
+    public function detail(Stagiaire $stagiaire, Request $request, Session $session): Response
     {   
-        // $id = $request->attributes->get('_route_params');
+        if(!$stagiaire) {
+            $stagiaire = new Stagiaire();
+        }
+
+        $form = $this->createForm(StagiaireType::class, $stagiaire);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $stagiaire = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($stagiaire);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('detail_stagiaire');
+        }
+        return $this->render('stagiaire/index.html.twig', [
+            'formEditStagiaire' => $form->createView()
+        ]);
 
         return $this->render('stagiaire/detail.html.twig', [
         ]);
     }
+
+    #[Route('/stagiaire/{id}/delete', name: 'delete_stagiaire')]
+    public function delete(ManagerRegistry $doctrine, Stagiaire $stagiaire) {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($stagiaire);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_stagiaire');
+    }
+
+    
 }

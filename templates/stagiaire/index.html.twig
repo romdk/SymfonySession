@@ -15,13 +15,36 @@
             </li>
             {% endfor %}
         </ul>
-        <button id="btnAjout">Ajouter un stagiaire</button>
+        <div id="divBtn">
+            <button id="btnAjout">Ajouter un stagiaire</button>
+        </div>
         <div id="overlay">
-            <div class="form">{{ form(formAddStagiaire) }}
+            <div class="form">
+                {{ form_start(formAddStagiaire) }}
+                <div class="nomPrenom">
+                    {{ form_row(formAddStagiaire.nom) }}
+                    {{ form_row(formAddStagiaire.prenom) }}
+                    {{ form_row(formAddStagiaire.sexe) }}
+                </div>
+                <div class="sexeDateNaissanceVille">
+                    {{ form_row(formAddStagiaire.dateNaissance) }}
+                    {{ form_row(formAddStagiaire.ville) }}
+                </div>
+                <div class="emailTelephone">
+                    {{ form_row(formAddStagiaire.email) }}
+                    {{ form_row(formAddStagiaire.telephone) }}
+                </div>
+                <div class="btnAjouter">
+                    {{ form_row(formAddStagiaire.ajouter) }}
+                </div>
+                {{ form_end(formAddStagiaire) }}
                 <i id="btnFermer" class="fa-solid fa-xmark"></i>
             </div>    
         </div>
     </div>
     </main>  
 {% endblock %}
+{% block javascripts %}
+                <script src="{{ asset('js/stagiaireScript.js') }}"></script>
+            {% endblock %}
 
