@@ -1,7 +1,5 @@
 nav : selecteur qui reste apres refresh
 
-details formation : rediretion supp session
-
 liste sessions : afficher nb d'inscrits session
                  actions sessions -> voir details
                  ajout session
@@ -9,6 +7,7 @@ liste sessions : afficher nb d'inscrits session
 details session : aff liste inscrits
                   afficher programme/modules
                   ajout/modifier/suppr module
+                  aff stagiaires pas inscrits
 
 liste stagiaires : input select ajout stagiaire
 
