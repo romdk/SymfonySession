@@ -39,7 +39,7 @@ class StagiaireController extends AbstractController
     }
 
     #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
-    public function detail(Stagiaire $stagiaire, Request $request, Session $session): Response
+    public function detail(Stagiaire $stagiaire, Request $request): Response
     {   
         if(!$stagiaire) {
             $stagiaire = new Stagiaire();
@@ -56,11 +56,8 @@ class StagiaireController extends AbstractController
 
             return $this->redirectToRoute('detail_stagiaire');
         }
-        return $this->render('stagiaire/index.html.twig', [
-            'formEditStagiaire' => $form->createView()
-        ]);
-
         return $this->render('stagiaire/detail.html.twig', [
+            'formEditStagiaire' => $form->createView()
         ]);
     }
 
