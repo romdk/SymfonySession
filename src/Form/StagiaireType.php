@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Session;
 use App\Entity\Stagiaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,10 +28,10 @@ class StagiaireType extends AbstractType
             ->add('telephone', TextType::class)
             ->add('ajouter', SubmitType::class)
             // ->add('sessions', EntityType::class, [
-            //     'class' => 'Session::class',
+            //     'class' => Session::class,
             //     'choice_label' => 'date_debut'
             // ])
-        ;
+        ;   
     }
 
     public function configureOptions(OptionsResolver $resolver): void
