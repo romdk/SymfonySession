@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<main id="detailMain">
+    <div class="programme">
+        <h3>Modules du programme</h3>
+        {% for module in modules %}
+            <span>{{ module.nomModule }}</span>
+        {% endfor %}
+    </div>
+    <div class="stagiaires">
+        <h3>Stagiaires inscrits</h3>
+        {% for stagiaire in stagiairesInscrits %}
+            <a class="stagiaire" href="{{ path('detail_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom ~ ' ' ~ stagiaire.prenom}}</a>
+            <a href="{{ path('desinscrire_stagiaire', {'id':session_id,'stagiaireId': stagiaire.id}) }}"><i class="fa-solid fa-xmark"></i></a>
+
+        {% endfor %}
+        <h3>Stagiaires non inscrits</h3>
+        <div class="searchBar">
+            <input id="searchBar" onkeyup="affStagiaires()" type="text" placeholder="Rechercher un stagiaire">
+        </div>
+        <ul id='results'>
+            {% for stagiaire in stagiairesNonInscrits %}
+            <li class='result'>
+                <a class="stagiaire" href="{{ path('detail_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom ~ ' ' ~ stagiaire.prenom}}</a>
+                <a href="{{ path('inscrire_stagiaire', {'id':session_id,'stagiaireId': stagiaire.id}) }}"><i class="fa-solid fa-plus"></i></a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</main>
+{% endblock %}
+{% block javascripts %}
+                <script src="{{ asset('js/stagiaireScript.js') }}"></script>
+{% endblock %}
