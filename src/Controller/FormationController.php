@@ -24,32 +24,31 @@ class FormationController extends AbstractController
     }
 
     #[Route('/formation/{id}', name: 'detail_formation')]
-    public function detail(Formation $formation, ManagerRegistry $doctrine, SessionRepository $sr, Request $request, Session $session): Response
+    public function detail(Formation $formation, ManagerRegistry $doctrine, SessionRepository $sr, Request $request): Response
     {   
-        $placesReserve = count($session->getStagiaires());
         $today = date('d/m/Y');
         $id = $request->attributes->get('_route_params');
 
+        $sessions = $doctrine->getRepository(Session::class)->findAll();
         $pastSessions = $sr->findPastSessionsByFormation($id);
         $currentSessions = $sr->findCurrentSessionsByFormation($id);
         $upcomingSessions = $sr->findUpcomingSessionsByFormation($id);
         return $this->render('formation/detail.html.twig', [
-            'placesReserve' => $placesReserve,
-            'formation' => $formation,
             'today' => $today,
+            'formation' => $formation,
             'pastSessions' => $pastSessions,
             'currentSessions' => $currentSessions,
             'upcomingSessions' => $upcomingSessions,
         ]);
     }
 
-    #[Route('/formation/{id}/delete', name: 'delete_detail_formation')]
+    #[Route('/formation/{id}/delete', name: 'delete_session_formation')]
     public function delete(ManagerRegistry $doctrine, Session $session) {
         $entityManager = $doctrine->getManager();
         $entityManager->remove($session);
         $entityManager->flush();
 
-        return $this->redirectToRoute('detail_formation');
+        return $this->redirectToRoute('detail_formation', ['id' => $session->getFormation()->getId()]);
     }
 
 }
