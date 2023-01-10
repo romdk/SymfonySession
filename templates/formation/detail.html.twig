@@ -30,9 +30,9 @@
                     <span>En cours</span>
                     {% elseif today > session.dateFin  %}
                     <span>Terminée</span>
-                    {% elseif today < session.dateDebut and placesReserve == session.nbPlacesTotal %}
+                    {% elseif today < session.dateDebut and session.stagiaires | length == session.nbPlacesTotal %}
                     <span>Complet</span>
-                    {% elseif today < session.dateDebut and placesReserve < session.nbPlacesTotal %}
+                    {% elseif today < session.dateDebut and session.stagiaires | length < session.nbPlacesTotal %}
                     <span>Disponible</span>   
                     {% endif %}
                 </td>
@@ -40,7 +40,7 @@
                 <td>{{ session.Referent.prenom }} {{ session.Referent.nom }}</td>
                 <td>{{ session.dateDebut | date('d/m/Y') }}</td>
                 <td>{{ session.dateFin | date('d/m/Y')  }}</td> 
-                <td>{{ placesReserve }}/{{ session.nbPlacesTotal }}</td>
+                <td>{{ session.stagiaires | length }}/{{ session.nbPlacesTotal }}</td>
                 <td class="actions"><i class="fa-solid fa-arrow-up-right-from-square"></i></td>
             </tr>                
             {% endfor %}
@@ -62,9 +62,9 @@
                     <span>En cours</span>
                     {% elseif today > session.dateFin  %}
                     <span>Terminée</span>
-                    {% elseif today < session.dateDebut and placesReserve == session.nbPlacesTotal %}
+                    {% elseif today < session.dateDebut and session.stagiaires | length == session.nbPlacesTotal %}
                     <span>Complet</span>
-                    {% elseif today < session.dateDebut and placesReserve < session.nbPlacesTotal %}
+                    {% elseif today < session.dateDebut and session.stagiaires | length < session.nbPlacesTotal %}
                     <span>Disponible</span> 
                     {% endif %}
                 </td>
@@ -72,8 +72,8 @@
                 <td>{{ session.Referent.prenom }} {{ session.Referent.nom }}</td>
                 <td>{{ session.dateDebut | date('d/m/Y') }}</td>
                 <td>{{ session.dateFin | date('d/m/Y')  }}</td>
-                <td>{{ placesReserve }}/{{ session.nbPlacesTotal }}</td>
-                <td class="actions"><i class="fa-solid fa-arrow-up-right-from-square"></i><a href="{{ path('delete_detail_formation', {'id': session.id}) }}"><i class="fa-solid fa-xmark"></i></a></td>
+                <td>{{ session.stagiaires | length }}/{{ session.nbPlacesTotal }}</td>
+                <td class="actions"><i class="fa-solid fa-arrow-up-right-from-square"></i><a href="{{ path('delete_session_formation', {'id': session.id}) }}"><i class="fa-solid fa-xmark"></i></a></td>
             </tr>                
             {% endfor %}
         </table>           
@@ -94,9 +94,9 @@
                     <span>En cours</span>
                     {% elseif today > session.dateFin  %}
                     <span>Terminée</span>
-                    {% elseif today < session.dateDebut and placesReserve == session.nbPlacesTotal %}
+                    {% elseif today < session.dateDebut and session.stagiaires | length == session.nbPlacesTotal %}
                     <span>Complet</span>
-                    {% elseif today < session.dateDebut and placesReserve < session.nbPlacesTotal %}
+                    {% elseif today < session.dateDebut and session.stagiaires | length < session.nbPlacesTotal %}
                     <span>Disponible</span> 
                     {% endif %}
                 </td>
@@ -104,7 +104,7 @@
                 <td>{{ session.Referent.prenom }} {{ session.Referent.nom }}</td>
                 <td>{{ session.dateDebut | date('d/m/Y') }}</td>
                 <td>{{ session.dateFin | date('d/m/Y')  }}</td>
-                <td>{{ placesReserve }}/{{ session.nbPlacesTotal }}</td>
+                <td>{{ session.stagiaires | length }}/{{ session.nbPlacesTotal }}</td>
                 <td class="actions"><i class="fa-solid fa-arrow-up-right-from-square"></i></td>
             </tr>                
             {% endfor %}
