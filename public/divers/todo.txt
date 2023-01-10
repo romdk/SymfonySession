@@ -1,13 +1,9 @@
 nav : selecteur qui reste apres refresh
 
-liste sessions : afficher nb d'inscrits session
-                 actions sessions -> voir details
-                 ajout session
+liste sessions : ajout session
 
-details session : aff liste inscrits
-                  afficher programme/modules
+details session : afficher programme/modules
                   ajout/modifier/suppr module
-                  aff stagiaires pas inscrits
 
 liste stagiaires : input select ajout stagiaire
 
