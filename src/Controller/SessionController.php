@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Module;
 use App\Entity\Session;
+use App\Entity\Programme;
 use App\Entity\Stagiaire;
 use App\Repository\ModuleRepository;
 use App\Repository\SessionRepository;
@@ -48,23 +49,23 @@ class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/session/{id}/retirerModule/{moduleId}', name: 'retirer_module')]
-    public function retirerModule(ManagerRegistry $doctrine, Session $session, $moduleId)
+    #[Route('/session/{id}/retirerProgramme/{programmeId}', name: 'retirer_programme')]
+    public function retirerProgramme(ManagerRegistry $doctrine, Session $session, $programmeId)
     {
         $entityManager = $doctrine->getManager();
-        $module = $entityManager->getRepository(Module::class)->find($moduleId);
-        $session->getProgramme()->removeModule($module);
+        $programme = $entityManager->getRepository(Programme::class)->find($programmeId);
+        $session->removeProgramme($programme);
         $entityManager->flush();
 
         return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
     }
 
-    #[Route('/session/{id}/ajouterModule/{moduleId}', name: 'ajouter_module')]
+    #[Route('/session/{id}/ajouterProgramme/{moduleId}', name: 'ajouter_programme')]
     public function ajouterModule(ManagerRegistry $doctrine, Session $session, $moduleId)
     {
         $entityManager = $doctrine->getManager();
-        $module = $entityManager->getRepository(Module::class)->find($moduleId);
-        $session->getProgramme()->addModule($module);
+        $programme = $entityManager->getRepository(Programme::class)->find($moduleId);
+        $session->addProgramme($programme);
         $entityManager->flush();
 
         return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
