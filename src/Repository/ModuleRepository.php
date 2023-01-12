@@ -39,6 +39,25 @@ class ModuleRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAutresModulesBySessionId($session_id)
+    {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+        $qb = $sub;
+        $qb->select('p')
+        ->from('App\Entity\Programme', 'p')
+        ->leftJoin('p.session','se')
+        ->where('se.id = :id');
+
+        $sub = $em->createQueryBuilder();
+        $sub->select('mo')
+        ->from('App\Entity\Module', 'mo')
+        ->where($sub->expr()->notIn('mo.id', $qb->getDQL()))
+        ->setParameter('id', $session_id);
+        $query = $sub->getQuery();
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Module[] Returns an array of Module objects
 //     */
