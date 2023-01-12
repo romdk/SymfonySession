@@ -218,26 +218,6 @@ body{
     font-weight: 400;
 }
 
-#detailSessionMain{
-    width: 88vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#detailSessionMain .inscrits{
-    margin-top: 60px;
-    width: 100%;
-}
-
-#detailSessionMain li{
-    position: relative;
-    overflow: visible;
-    list-style: none;
-}
-
 .selecteur{
     height: fit-content;
     margin-top: 20px;
@@ -340,16 +320,9 @@ body{
 #detailSessionMain .fa-xmark:hover{
     background-color: #5f2121;
 }
-
-
-#detailSessionMain .nonInscrits{
-    margin-top: 60px;
-}
-
 #detailSessionMain h3{
     width: 100%;
     text-align: center;
-    margin-bottom: 20px;    
 }
 
 #detailSessionMain ul {
@@ -362,12 +335,56 @@ body{
     overflow: visible;
 }
 
-.modules {
-width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
+#detailSessionMain{
+    width: 88vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#detailSessionMain li{
+    position: relative;
+    overflow: visible;
+    list-style: none;
+}
+
+.infos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 60%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
+}
+
+.infos h2{
+    width: 100%;
+    text-align: center;
+}
+
+.infos .session{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #dddddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.infos .modules {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #dddddd;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 .modules h3{
@@ -376,8 +393,6 @@ flex-wrap: wrap;
 
 #detailSessionMain .modules .fa-xmark{
     top: 5px;
-    /* right: -6px; */
-    /* height: 25px; */
 }
 
 #detailSessionMain .modules .fa-plus{
@@ -387,14 +402,8 @@ flex-wrap: wrap;
 }
 
 .autresModules{
-    margin-top: 60px;
+    margin-top: 30px;
 }
-
-/* .modules ul{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-} */
 
 .module {
     margin: 5px;
@@ -418,6 +427,25 @@ flex-wrap: wrap;
     height: 25px;
     padding: 0 5px;
     text-align: center;
+}
+
+.infos .stagiaires {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #dddddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#detailSessionMain .inscrits{
+    width: 100%;
+}
+
+#detailSessionMain .nonInscrits{
+    width: 100%;
+    margin-top: 30px;
 }
 
 /* -------------------------------------------------------- */
