@@ -9,6 +9,8 @@
     overflow-x: hidden;
 }
 
+/* ----------------------------------LOGIN-------------------------------- */
+
 #loginMain{
     width: 100vw;
     height: 100vh;
@@ -76,6 +78,7 @@
     background-color: #0a74d8;
 }
 
+/* -------------------------------------------NAV-------------------------------- */
 nav{
     position: fixed;
     top: 0;
@@ -167,6 +170,15 @@ body{
     background-color: #cccccc;
 }
 
+/* ------------------------------------FORMATIONS-------------------------------- */
+#formationMain{
+    width: 88vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .formations{
     display: flex;
     justify-content: center;
@@ -189,6 +201,8 @@ body{
     color: #F1F1F1;
 }
 
+/* ------------------------------------SESSIONS------------------------------------ */
+
 #sessionMain{
     width: 88vw;
     height: 100vh;
@@ -204,32 +218,24 @@ body{
     font-weight: 400;
 }
 
-#formationMain{
-    width: 88vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-#detailMain{
+#detailSessionMain{
     width: 88vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 
-#detailMain h1{
-    margin-top: 20px;
-    text-transform: uppercase;
-    font-weight: 400;
+#detailSessionMain .inscrits{
+    margin-top: 60px;
+    width: 100%;
 }
 
-#detailMain h3{
-    width: 100%;
-    text-align: center;
+#detailSessionMain li{
+    position: relative;
+    overflow: visible;
+    list-style: none;
 }
 
 .selecteur{
@@ -257,47 +263,186 @@ body{
 }
 
 .tables{
-margin-top: 20px;
+    margin-top: 20px;
+    }
+    
+    #currentSessions{
+        background-color: rgb(166, 96, 96);
+    }
+    
+    #upcomingSessions{
+        display: none;
+        background-color: rgb(122, 165, 122);
+    }
+    
+    #pastSessions{
+        display: none;
+        background-color: rgb(133, 133, 172);
+    }
+    
+    table{
+        border-collapse: collapse;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+    th {
+        padding: 10px;
+        background-color: #2A3436;
+        color: #F1F1F1;
+        font-weight: 400;
+    }
+    
+    td {
+        padding: 10px;
+    }
+    
+    tr:nth-child(even){
+        background-color: #efefef;
+    }
+    
+    tr:nth-child(odd){
+        background-color: #e2e2e2;
+    }
+
+    .actions{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+/* -----------------------------------------DETAILS SESSION------------------------ */
+
+#detailSessionMain .fa-plus{
+    position: absolute;
+    top: 0px;
+    right: -10px;
+    color: #f1f1f1;
+    background-color: green;
+    padding:  4px 6px;
+    border-radius: 0 20px 20px 0;
 }
 
-#currentSessions{
-    background-color: rgb(166, 96, 96);
+#detailSessionMain .fa-plus:hover{
+    background-color: rgb(3, 83, 3);
 }
 
-#upcomingSessions{
-    display: none;
-    background-color: rgb(122, 165, 122);
+#detailSessionMain .fa-xmark{
+    position: absolute;
+    top: 0;
+    right: -10px;
+    color: #f1f1f1;
+    background-color: #892E2E;
+    padding:  4px 8px;
+    border-radius: 0 20px 20px 0;
 }
 
-#pastSessions{
-    display: none;
-    background-color: rgb(133, 133, 172);
+#detailSessionMain .fa-xmark:hover{
+    background-color: #5f2121;
 }
 
-table{
-    border-collapse: collapse;
-    border-radius: 5px;
+
+#detailSessionMain .nonInscrits{
+    margin-top: 60px;
+}
+
+#detailSessionMain h3{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;    
+}
+
+#detailSessionMain ul {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: visible;
+}
+
+.modules {
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+}
+
+.modules h3{
+    width: 100%;
+}
+
+#detailSessionMain .modules .fa-xmark{
+    top: 5px;
+    /* right: -6px; */
+    /* height: 25px; */
+}
+
+#detailSessionMain .modules .fa-plus{
+    top: 5px;
+    right: -6px;
+    height: 25px;
+}
+
+.autresModules{
+    margin-top: 60px;
+}
+
+/* .modules ul{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+} */
+
+.module {
+    margin: 5px;
+    padding:  0 15px 0 10px;
+    border-radius: 20px;
+    color: #f1f1f1;
+    background-color: rgb(26, 49, 63); 
+    transition: .3s;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-th {
-    padding: 10px;
-    background-color: #2A3436;
-    color: #F1F1F1;
+.module input{
+    outline: none;
+    border: none;
+    background-color: #cbcbcb;
+    color: #1c1c1c;
+    width: 60px;
+    height: 25px;
+    padding: 0 5px;
+    text-align: center;
+}
+
+/* -------------------------------------------------------- */
+
+#detailMain{
+    width: 88vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#detailMain h1{
+    margin-top: 20px;
+    text-transform: uppercase;
     font-weight: 400;
 }
 
-td {
-    padding: 10px;
+#detailMain h3{
+    width: 100%;
+    text-align: center;
 }
 
-tr:nth-child(even){
-    background-color: #efefef;
-}
-
-tr:nth-child(odd){
-    background-color: #e2e2e2;
-}
+/* ------------------------------STAGIAIRES---------------------------- */
 
 #stagiairesMain{
     display: flex;
@@ -327,7 +472,7 @@ tr:nth-child(odd){
 
 .stagiaire {
     margin: 5px;
-    padding: 0 10px;
+    padding:  0 15px 0 10px;
     border-radius: 20px;
     color: #f1f1f1;
     background-color: rgb(26, 49, 63); 
@@ -455,16 +600,8 @@ tr:nth-child(odd){
     margin-top: 10px;
 }
 
-.actions{
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
 
-/* #upcomingSessions .actions{
-    display: flex;
-    justify-content: center;
-} */
+
 
 
 
