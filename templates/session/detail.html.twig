@@ -11,16 +11,16 @@
                 {% for programme in programmes %}
                     <li>
                         <span class="module" >{{ programme.module.nomModule }}</span>
-                        <a href="{{ path('retirer_module', {'id':session_id,'moduleId': programme.module.id}) }}"><i class="fa-solid fa-xmark"></i></a>
+                        <a href="{{ path('retirer_programme', {'id':session_id,'programmeId': programme.module.id}) }}"><i class="fa-solid fa-xmark"></i></a>
                     </li>
                 {% endfor %}
             </ul>
-            <h3>Autres modules</h3>
+            <h3 class="autresModules">Autres modules</h3>
             <ul>
                 {% for module in autresModules %}
                 <li>
-                    <span class="module">{{ module.nomModule }}</span>
-                    {# <a href="{{ path('ajouter_module', {'id':session_id,'moduleId': module.id}) }}"><i class="fa-solid fa-plus"></i></a> #}
+                    <span class="module">{{ module.nomModule }} <input type="number" placeholder="Jours"></span>
+                    <a href="{{ path('ajouter_programme', {'id':session_id,'moduleId': module.id}) }}"><i class="fa-solid fa-plus"></i></a>
                 </li>
                 {% endfor %}
             </ul>  
