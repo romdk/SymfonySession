@@ -57,8 +57,7 @@ class StagiaireRepository extends ServiceEntityRepository
         ->where($sub->expr()->notIn('st.id', $qb->getDQL()))
         // requête paramétrée
         ->setParameter('id', $session_id)
-        // ->orderBy('st.nom');
-        ;
+        ->orderBy('st.nom');
         // renvoyer le resultat
         $query = $sub->getQuery();
         return $query->getResult();
