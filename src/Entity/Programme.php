@@ -18,16 +18,17 @@ class Programme
     #[ORM\Column]
     private ?int $duree = null;
 
-    #[ORM\OneToMany(mappedBy: 'programme', targetEntity: Session::class)]
-    private Collection $sessions;
+    #[ORM\ManyToOne(inversedBy: 'programmes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Module $module = null;
 
-    #[ORM\ManyToMany(targetEntity: Module::class, inversedBy: 'programmes')]
-    private Collection $modules;
+    #[ORM\ManyToOne(inversedBy: 'programmes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Session $session = null;
 
     public function __construct()
     {
-        $this->sessions = new ArrayCollection();
-        $this->modules = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -47,57 +48,29 @@ class Programme
         return $this;
     }
 
-    /**
-     * @return Collection<int, Session>
-     */
-    public function getSessions(): Collection
+    public function getModule(): ?Module
     {
-        return $this->sessions;
+        return $this->module;
     }
 
-    public function addSession(Session $session): self
+    public function setModule(?Module $module): self
     {
-        if (!$this->sessions->contains($session)) {
-            $this->sessions->add($session);
-            $session->setProgramme($this);
-        }
+        $this->module = $module;
 
         return $this;
     }
 
-    public function removeSession(Session $session): self
+    public function getSession(): ?Session
     {
-        if ($this->sessions->removeElement($session)) {
-            // set the owning side to null (unless already changed)
-            if ($session->getProgramme() === $this) {
-                $session->setProgramme(null);
-            }
-        }
+        return $this->session;
+    }
+
+    public function setSession(?Session $session): self
+    {
+        $this->session = $session;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Module>
-     */
-    public function getModules(): Collection
-    {
-        return $this->modules;
-    }
-
-    public function addModule(Module $module): self
-    {
-        if (!$this->modules->contains($module)) {
-            $this->modules->add($module);
-        }
-
-        return $this;
-    }
-
-    public function removeModule(Module $module): self
-    {
-        $this->modules->removeElement($module);
-
-        return $this;
-    }
+    
 }
