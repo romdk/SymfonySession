@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Module;
 use App\Entity\Session;
 use App\Entity\Stagiaire;
+use App\Repository\ModuleRepository;
 use App\Repository\SessionRepository;
 use App\Repository\StagiaireRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -30,20 +32,42 @@ class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}', name: 'detail_session')]
-    public function detail(Session $session, StagiaireRepository $sr): Response
+    public function detail(Session $session, StagiaireRepository $sr, ModuleRepository $mr): Response
     {
         $session_id = $session->getId();
+        $programmes = $session->getProgrammes();
+        $autresModules = $mr->findAutresModulesBySessionId($session_id);
         $stagiairesInscrits = $session->getStagiaires();
-        $programme = $session->getProgramme();
-        $modules = $programme->getModules();
         $stagiairesNonInscrits = $sr->findStagiairesNonInscritsBySessionId($session_id);   
         return $this->render('session/detail.html.twig', [
+            'session_id' => $session_id,          
+            'programmes' => $programmes,
+            'autresModules' => $autresModules,
             'stagiairesInscrits' => $stagiairesInscrits,
-            'programme' => $programme,
-            'modules' => $modules,
             'stagiairesNonInscrits' => $stagiairesNonInscrits,  
-            'session_id' => $session_id          
         ]);
+    }
+
+    #[Route('/session/{id}/retirerModule/{moduleId}', name: 'retirer_module')]
+    public function retirerModule(ManagerRegistry $doctrine, Session $session, $moduleId)
+    {
+        $entityManager = $doctrine->getManager();
+        $module = $entityManager->getRepository(Module::class)->find($moduleId);
+        $session->getProgramme()->removeModule($module);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+    }
+
+    #[Route('/session/{id}/ajouterModule/{moduleId}', name: 'ajouter_module')]
+    public function ajouterModule(ManagerRegistry $doctrine, Session $session, $moduleId)
+    {
+        $entityManager = $doctrine->getManager();
+        $module = $entityManager->getRepository(Module::class)->find($moduleId);
+        $session->getProgramme()->addModule($module);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
     }
 
     #[Route('/session/{id}/desinscrire/{stagiaireId}', name: 'desinscrire_stagiaire')]
