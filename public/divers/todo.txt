@@ -4,9 +4,7 @@ liste sessions : ajout/edit session
 
 details session : ajouter module
 
-liste stagiaires : input select ajout stagiaire
-
-detail stagiaire : afficher infos, sessions, modifier info, supprimer stagiaire
+detail stagiaire : modifier info
 
 liste referents: afficher referents
 
