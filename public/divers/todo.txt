@@ -1,12 +1,18 @@
 nav : selecteur qui reste apres refresh
 
-liste sessions : ajout session
+liste sessions : ajout/edit session
 
-details session : afficher programme/modules
-                  ajout/modifier/suppr module
+details session : ajouter module
 
 liste stagiaires : input select ajout stagiaire
 
-liste formations : formulaire d'ajout formation
+detail stagiaire : afficher infos, sessions, modifier info, supprimer stagiaire
+
+liste referents: afficher referents
+
+detail referent : afficher infos, session, modifier info, supprimer referent
+
+liste modules :  afficher modules
+                formulaire d'ajout module
 
 
