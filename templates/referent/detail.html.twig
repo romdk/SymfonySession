@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Informations du referent{% endblock %}
+
+{% block body %}
+<main id="detailMain">
+    <div class="ficheReferent">
+        <h2>Fiche referent</h2>
+        <div class="infosReferent">
+            <span>Nom: {{ referent.nom}}</span>
+            <span>Prenom: {{ referent.prenom }}</span>
+        </div>
+        <div class="sessionsReferent">
+            <h2>Sessions</h2>
+            <table id="currentSessions">
+                <tr>
+                    <th>Statut</th>
+                    <th>Formation</th>
+                    <th>Session</th>
+                    <th>Référent</th>
+                    <th>Date de début</th>
+                    <th>Date de fin</th>
+                    <th>Inscrits</th>
+                    <th>Actions</th>
+                </tr>
+                {% for session in sessionsReferent %}
+                <tr>
+                    <td> 
+                        {% if today > session.dateDebut and today < session.dateFin %}
+                        <span>En cours</span>
+                        {% elseif today > session.dateFin  %}
+                        <span>Terminée</span>
+                        {% elseif today < session.dateDebut and session.stagiaires | length == session.nbPlacesTotal %}
+                        <span>Complet</span>
+                        {% elseif today < session.dateDebut and session.stagiaires | length < session.nbPlacesTotal %}
+                        <span>Disponible</span>  
+                        {% endif %}
+                    </td>
+                    <td>{{ session.Formation.nomFormation }}</td>
+                    <td>{{ session.nomSession }}</td>
+                    <td>{{ session.Referent.prenom }} {{ session.Referent.nom }}</td>
+                    <td>{{ session.dateDebut | date('d/m/Y') }}</td>
+                    <td>{{ session.dateFin | date('d/m/Y')  }}</td>
+                    <td>{{ session.stagiaires | length }}/{{ session.nbPlacesTotal }}</td>
+                    <td class="actions"><a href="{{ path('detail_session', {'id': session.id}) }}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                </tr>                
+                {% endfor %}
+            </table>           
+        </div>
+        <a class="btnSupprimerReferent" href="{{ path('delete_referent', {'id': referent.id}) }}">Supprimer le referent</a>
+    </div>
+</main>
+{% endblock %}
