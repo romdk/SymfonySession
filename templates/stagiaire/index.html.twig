@@ -21,16 +21,16 @@
         <div id="overlay">
             <div class="form">
                 {{ form_start(formAddStagiaire) }}
-                <div class="nomPrenom">
+                <div class="formRow">
                     {{ form_row(formAddStagiaire.nom) }}
                     {{ form_row(formAddStagiaire.prenom) }}
                     {{ form_row(formAddStagiaire.sexe) }}
                 </div>
-                <div class="sexeDateNaissanceVille">
+                <div class="formRow">
                     {{ form_row(formAddStagiaire.dateNaissance) }}
                     {{ form_row(formAddStagiaire.ville) }}
                 </div>
-                <div class="emailTelephone">
+                <div class="formRow">
                     {{ form_row(formAddStagiaire.email) }}
                     {{ form_row(formAddStagiaire.telephone) }}
                     {# {{ form_row(formAddStagiaire.sessions | date('d-m-Y')) }} #}
@@ -46,6 +46,6 @@
     </main>  
 {% endblock %}
 {% block javascripts %}
-                <script src="{{ asset('js/stagiaireScript.js') }}"></script>
-            {% endblock %}
+    <script src="{{ asset('js/stagiaireScript.js') }}"></script>
+{% endblock %}
 
