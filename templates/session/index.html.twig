@@ -115,6 +115,29 @@
             </tr>                
             {% endfor %}
         </table>
+    </div>
+    <div id="divBtn">
+        <button id="btnAjout">Ajouter une session</button>
+    </div>
+    <div id="overlay">
+        <div class="form">
+            {{ form_start(formAddSession) }}
+            <div class="formRow">
+                {{ form_row(formAddSession.nomSession) }}
+                {{ form_row(formAddSession.referent) }}
+                {{ form_row(formAddSession.formation) }}
+            </div>
+            <div class="formRow">
+                {{ form_row(formAddSession.nbPlacesTotal) }}
+                {{ form_row(formAddSession.dateDebut) }}
+                {{ form_row(formAddSession.dateFin) }}
+            </div>
+            <div class="btnAjouter">
+                {{ form_row(formAddSession.ajouter) }}
+            </div>
+            {{ form_end(formAddSession) }}
+            <i id="btnFermer" class="fa-solid fa-xmark"></i>
+        </div>    
     </div>       
 </main>
 {% endblock %}

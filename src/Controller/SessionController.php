@@ -6,10 +6,12 @@ use App\Entity\Module;
 use App\Entity\Session;
 use App\Entity\Programme;
 use App\Entity\Stagiaire;
+use App\Form\SessionType;
 use App\Repository\ModuleRepository;
 use App\Repository\SessionRepository;
 use App\Repository\StagiaireRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,18 +19,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SessionController extends AbstractController
 {
     #[Route('/session', name: 'app_session')]
-    public function index(ManagerRegistry $doctrine, SessionRepository $sr): Response
+    public function index(ManagerRegistry $doctrine, SessionRepository $sr, Session $session = null, Request $request): Response
     {
         $today = date('d/m/Y');
         // récuperer les sessions de la bdd
         $pastSessions = $sr->findPastSessions();
         $currentSessions = $sr->findCurrentSessions();
         $upcomingSessions = $sr->findUpcomingSessions();
+
+        // if(!$session) {
+        //     $session = new Session();
+        // }
+
+        $sessions = $doctrine->getRepository(Session::class)->findAll();
+        $form = $this->createForm(SessionType::class, $session);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $session = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($session);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_session');
+        }
         return $this->render('session/index.html.twig', [
             'today' => $today,
             'pastSessions' => $pastSessions,
             'currentSessions' => $currentSessions,
             'upcomingSessions' => $upcomingSessions,
+            'formAddSession' => $form->createView()
         ]);
     }
 
