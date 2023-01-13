@@ -32,3 +32,17 @@ pastBtn.addEventListener('click', () => {
     upcomingSessions.style.display = 'none'  
     pastSessions.style.display = 'block'     
 })
+
+
+// ------------------------------------Formulaire ajout-------------------------------
+const btnAjout = document.getElementById('btnAjout');
+const overlay = document.getElementById('overlay');
+const btnFermer = document.getElementById('btnFermer');
+
+btnAjout.addEventListener('click', () => {
+ overlay.style.display = 'flex';
+});
+
+btnFermer.addEventListener('click', () => {
+    overlay.style.display = 'none';
+});
