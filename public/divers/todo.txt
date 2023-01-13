@@ -6,8 +6,6 @@ details session : ajouter module
 
 detail stagiaire : modifier info
 
-liste referents: afficher referents
-
 detail referent : afficher infos, session, modifier info, supprimer referent
 
 liste modules :  afficher modules
