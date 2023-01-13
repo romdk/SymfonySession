@@ -94,6 +94,7 @@ nav{
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 999;
 }
 
 nav #imageProfil{
@@ -199,6 +200,17 @@ body{
     height: 200px;
     background-color: #2A3436;
     color: #F1F1F1;
+}
+
+#formationMain #divBtn{
+    margin-bottom: 20px;
+}
+
+#formationMain #overlay{
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
 }
 
 /* ------------------------------------SESSIONS------------------------------------ */
@@ -600,21 +612,7 @@ body{
     cursor: pointer;    
 }
 
-#overlay .form .nomPrenom{
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
-    margin-top: 10px;
-}
-
-#overlay .form .sexeDateNaissanceVille{
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
-    margin-top: 10px;
-}
-
-#overlay .form .emailTelephone{
+#overlay .form .formRow{
     display: flex;
     justify-content: flex-start;
     gap: 20px;
