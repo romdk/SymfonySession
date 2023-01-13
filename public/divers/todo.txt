@@ -2,13 +2,14 @@ nav : selecteur qui reste apres refresh
 
 liste sessions : ajout/edit session
 
-details session : ajouter module
+details session : ajouter module, empecher inscription si session pleine
 
 detail stagiaire : modifier info
 
 detail referent : modifier info, supprimer referent
 
-liste modules :  afficher modules
-                formulaire d'ajout module
+liste categories :  afficher categories, formulaire d'ajout categories
+
+detail categorie : afficher modules, formulaire d'ajout modules
 
 
