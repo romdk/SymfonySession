@@ -459,6 +459,47 @@ body{
     width: 100%;
     margin-top: 30px;
 }
+/* ----------------------------------------------------CATEGORIES---------------------------------- */
+#categorieMain{
+    width: 88vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.categories{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 1240px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.categories .card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 200px;
+    background-color: #2A3436;
+    color: #F1F1F1;
+}
+
+#categorieMain #divBtn{
+    margin-bottom: 20px;
+}
+
+#categorieMain #overlay{
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
 
 /* -------------------------------------------------------- */
 
