@@ -22,9 +22,6 @@ class Stagiaire
     #[ORM\Column(length: 50)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $sexe = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateNaissance = null;
 
@@ -70,18 +67,6 @@ class Stagiaire
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getSexe(): ?string
-    {
-        return $this->sexe;
-    }
-
-    public function setSexe(string $sexe): self
-    {
-        $this->sexe = $sexe;
 
         return $this;
     }

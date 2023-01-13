@@ -18,7 +18,6 @@ class StagiaireType extends AbstractType
         $builder
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('sexe', TextType::class)
             ->add('dateNaissance', DateType::class, [
                 'widget' => 'single_text'
             ])
