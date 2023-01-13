@@ -41,23 +41,29 @@ class StagiaireController extends AbstractController
     #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
     public function detail(Stagiaire $stagiaire, Request $request): Response
     {   
-        if(!$stagiaire) {
-            $stagiaire = new Stagiaire();
-        }
+        $sessionsStagiaire = $stagiaire->getSessions();
+        $today = date('d/m/Y');
 
-        $form = $this->createForm(StagiaireType::class, $stagiaire);
-        $form->handleRequest($request);
+        // if(!$stagiaire) {
+        //     $stagiaire = new Stagiaire();
+        // }
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $stagiaire = $form->getData();
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($stagiaire);
-            $entityManager->flush();
+        // $form = $this->createForm(StagiaireType::class, $stagiaire);
+        // $form->handleRequest($request);
 
-            return $this->redirectToRoute('detail_stagiaire');
-        }
+        // if($form->isSubmitted() && $form->isValid()) {
+        //     $stagiaire = $form->getData();
+        //     $entityManager = $doctrine->getManager();
+        //     $entityManager->persist($stagiaire);
+        //     $entityManager->flush();
+
+        //     return $this->redirectToRoute('detail_stagiaire');
+        // }
         return $this->render('stagiaire/detail.html.twig', [
-            'formEditStagiaire' => $form->createView()
+            // 'formEditStagiaire' => $form->createView()
+            'stagiaire' => $stagiaire,
+            'sessionsStagiaire' => $sessionsStagiaire,
+            'today' => $today
         ]);
     }
 
