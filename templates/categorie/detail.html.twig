@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<main id="categorieMain">
+    <h2>{{ categorie.nomCategorie }}</h2>
+    {% for module in categorie.modules %}
+        {{ module }}
+    {% endfor %}
+    <div id="divBtn">
+        <button id="btnAjout">Ajouter un module</button>
+    </div>
+    <div id="overlay">
+        <div class="form">
+            {{ form_start(formAddModule) }}
+            <div class="formRow">
+                {{ form_row(formAddModule.nomModule) }}
+            </div>
+            <div class="formRow">
+                {{ form_row(formAddModule.categorie) }}
+            </div>
+            <div class="btnAjouter">
+                {{ form_row(formAddModule.ajouter) }}
+            </div>
+            {{ form_end(formAddModule) }}
+            <i id="btnFermer" class="fa-solid fa-xmark"></i>
+        </div>    
+    </div>
+</main>   
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/moduleScript.js') }}"></script>
+{% endblock %}
+

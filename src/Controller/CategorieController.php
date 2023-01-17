@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Module;
 use App\Entity\Session;
+use App\Form\ModuleType;
 use App\Entity\Categorie;
 use App\Form\SessionType;
 use App\Form\CategorieType;
@@ -37,14 +39,36 @@ class CategorieController extends AbstractController
         ]);
     }
 
+    #[Route('/categorie/{id}', name: 'detail_categorie')]
+    public function detail(Categorie $categorie, ManagerRegistry $doctrine, Module $module = null, Request $request): Response
+    {   
+        $id = $request->attributes->get('_route_params');
 
-    #[Route('/categorie/{id}/delete', name: 'delete_session_categorie')]
-    public function delete(ManagerRegistry $doctrine, Session $session) {
-        $entityManager = $doctrine->getManager();
-        $entityManager->remove($session);
-        $entityManager->flush();
+        $form = $this->createForm(ModuleType::class, $module);
+        $form->handleRequest($request);
 
-        return $this->redirectToRoute('detail_categorie', ['id' => $session->getCategorie()->getId()]);
+        if($form->isSubmitted() && $form->isValid()) {  
+            $module = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($module);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('detail_categorie', ['id' => $id]);
+        }
+        return $this->render('categorie/detail.html.twig', [
+            'categorie' => $categorie,
+            'formAddModule' => $form->createView()
+        ]);
     }
+
+
+    // #[Route('/categorie/{id}/delete', name: 'delete_session_categorie')]
+    // public function delete(ManagerRegistry $doctrine, Session $session) {
+    //     $entityManager = $doctrine->getManager();
+    //     $entityManager->remove($session);
+    //     $entityManager->flush();
+
+    //     return $this->redirectToRoute('detail_categorie', ['id' => $session->getCategorie()->getId()]);
+    // }
 
 }
