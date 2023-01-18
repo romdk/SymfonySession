@@ -804,7 +804,9 @@ body{
     background-color: #5f2121;
 }
 
-
+.hidden {
+    display: none;
+}
 
 
 
