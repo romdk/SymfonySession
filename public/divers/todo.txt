@@ -1,6 +1,6 @@
 nav : selecteur qui reste apres refresh
 
-liste sessions : ajout/edit session
+liste sessions : edit session
 
 details session : ajouter module, empecher inscription si session pleine
 
@@ -8,8 +8,8 @@ detail stagiaire : modifier info
 
 detail referent : modifier info, supprimer referent
 
-liste categories :  afficher categories, formulaire d'ajout categories
+liste categories :
 
-detail categorie : afficher modules, formulaire d'ajout modules
+detail categorie :
 
 
