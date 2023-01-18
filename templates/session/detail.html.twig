@@ -27,8 +27,12 @@
             <ul>
                 {% for module in autresModules %}
                 <li>
-                    <span class="module">{{ module.nomModule }} <input type="number" placeholder="Jours"></span>
-                    <a href="{{ path('ajouter_programme', {'id':session.id,'moduleId': module.id}) }}"><i class="fa-solid fa-plus"></i></a>
+                    <form action="{{ path('ajouter_programme', {'id':session.id,'moduleId': module.id}) }}" method="post">
+                        <span class="module">{{ module.nomModule }} 
+                            <input name="duree" type="number" placeholder="Jours"> 
+                            <input name="submitProgramme" type="submit" value="+" class="fa-solid fa-plus">
+                        </span>
+                    </form>
                 </li>
                 {% endfor %}
             </ul>  

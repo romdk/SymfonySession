@@ -7,6 +7,7 @@ use App\Entity\Session;
 use App\Entity\Programme;
 use App\Entity\Stagiaire;
 use App\Form\SessionType;
+use App\Form\ProgrammeType;
 use App\Repository\ModuleRepository;
 use App\Repository\SessionRepository;
 use App\Repository\StagiaireRepository;
@@ -48,7 +49,7 @@ class SessionController extends AbstractController
             'pastSessions' => $pastSessions,
             'currentSessions' => $currentSessions,
             'upcomingSessions' => $upcomingSessions,
-            'formAddSession' => $form->createView()
+            'formAddSession' => $form->createView(),
         ]);
     }
 
@@ -60,13 +61,31 @@ class SessionController extends AbstractController
         $autresModules = $mr->findAutresModulesBySessionId($session_id);
         $stagiairesInscrits = $session->getStagiaires();
         $stagiairesNonInscrits = $sr->findStagiairesNonInscritsBySessionId($session_id);   
+        
         return $this->render('session/detail.html.twig', [
             'session' => $session,
             'programmes' => $programmes,
             'autresModules' => $autresModules,
             'stagiairesInscrits' => $stagiairesInscrits,
-            'stagiairesNonInscrits' => $stagiairesNonInscrits,  
+            'stagiairesNonInscrits' => $stagiairesNonInscrits,
         ]);
+    }
+
+    #[Route('/session/{id}/ajouterProgramme/{moduleId}', name: 'ajouter_programme')]
+    public function ajouterProgramme(ManagerRegistry $doctrine, Session $session, $moduleId)
+    {
+        if(isset($_POST['submitProgramme'])){
+            $duree =filter_input(INPUT_POST,"duree",FILTER_VALIDATE_INT);
+            $entityManager = $doctrine->getManager();
+            $module = $entityManager->getRepository(Module::class)->find($moduleId);
+            $programme = new Programme();
+            $programme->setDuree($duree);
+            $programme->setModule($module);
+            $programme->setSession($session);
+            $entityManager->persist($programme);
+            $entityManager->flush();
+            return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+        }
     }
 
     #[Route('/session/{id}/retirerProgramme/{programmeId}', name: 'retirer_programme')]
@@ -74,22 +93,11 @@ class SessionController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $programme = $entityManager->getRepository(Programme::class)->find($programmeId);
-        $session->removeProgramme($programme);
+        $entityManager->removeProgramme($programme);
         $entityManager->flush();
 
         return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
-    }
-
-    #[Route('/session/{id}/ajouterProgramme/{moduleId}', name: 'ajouter_programme')]
-    public function ajouterModule(ManagerRegistry $doctrine, Session $session, $moduleId)
-    {
-        $entityManager = $doctrine->getManager();
-        $programme = $entityManager->getRepository(Programme::class)->find($moduleId);
-        $session->addProgramme($programme);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
-    }
+    } 
 
     #[Route('/session/{id}/desinscrire/{stagiaireId}', name: 'desinscrire_stagiaire')]
     public function desinscrireStagiaire(ManagerRegistry $doctrine, Session $session, $stagiaireId)
