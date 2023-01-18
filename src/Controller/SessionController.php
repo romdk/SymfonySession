@@ -10,6 +10,7 @@ use App\Form\SessionType;
 use App\Form\ProgrammeType;
 use App\Repository\ModuleRepository;
 use App\Repository\SessionRepository;
+use App\Repository\ProgrammeRepository;
 use App\Repository\StagiaireRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,7 +62,10 @@ class SessionController extends AbstractController
         $autresModules = $mr->findAutresModulesBySessionId($session_id);
         $stagiairesInscrits = $session->getStagiaires();
         $stagiairesNonInscrits = $sr->findStagiairesNonInscritsBySessionId($session_id);   
-        
+        // foreach($programmes as $programme){
+        //     dump ($programme);
+        // }die;
+
         return $this->render('session/detail.html.twig', [
             'session' => $session,
             'programmes' => $programmes,
@@ -89,11 +93,11 @@ class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}/retirerProgramme/{programmeId}', name: 'retirer_programme')]
-    public function retirerProgramme(ManagerRegistry $doctrine, Session $session, $programmeId)
+    public function retirerProgramme(ManagerRegistry $doctrine, Session $session,ProgrammeRepository $pr, $programmeId)
     {
         $entityManager = $doctrine->getManager();
         $programme = $entityManager->getRepository(Programme::class)->find($programmeId);
-        $entityManager->removeProgramme($programme);
+        $pr->remove($programme);
         $entityManager->flush();
 
         return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
