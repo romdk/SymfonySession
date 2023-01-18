@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class FormationController extends AbstractController
 {
@@ -41,17 +42,15 @@ class FormationController extends AbstractController
     public function detail(Formation $formation, ManagerRegistry $doctrine, SessionRepository $sr, Session $session = null, Request $request): Response
     {   
         $today = date('d/m/Y');
+        
         $id = $request->attributes->get('_route_params');
-
         $sessions = $doctrine->getRepository(Session::class)->findAll();
         $pastSessions = $sr->findPastSessionsByFormation($id);
         $currentSessions = $sr->findCurrentSessionsByFormation($id);
         $upcomingSessions = $sr->findUpcomingSessionsByFormation($id);
 
-        // if(!$session) {
-        //     $session = new Session();
-        // }
-
+        $session = new Session();
+        $session->setFormation($formation);
         $form = $this->createForm(SessionType::class, $session);
         $form->handleRequest($request);
 
@@ -61,7 +60,7 @@ class FormationController extends AbstractController
             $entityManager->persist($session);
             $entityManager->flush();
 
-            return $this->redirectToRoute('detail_formation', ['id' => $id]);
+            return $this->redirectToRoute('detail_formation', ['id' => $session->getFormation()->getId()]);
         }
         return $this->render('formation/detail.html.twig', [
             'today' => $today,

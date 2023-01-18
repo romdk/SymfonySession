@@ -119,7 +119,7 @@
             <div class="formRow">
                 {{ form_row(formAddSession.nomSession) }}
                 {{ form_row(formAddSession.referent) }}
-                {{ form_row(formAddSession.formation) }}
+                {{ form_row(formAddSession.formation, { 'attr': {'class': 'hidden'} }) }}
             </div>
             <div class="formRow">
                 {{ form_row(formAddSession.nbPlacesTotal) }}
