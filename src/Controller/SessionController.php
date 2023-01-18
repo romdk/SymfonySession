@@ -61,10 +61,7 @@ class SessionController extends AbstractController
         $programmes = $session->getProgrammes();
         $autresModules = $mr->findAutresModulesBySessionId($session_id);
         $stagiairesInscrits = $session->getStagiaires();
-        $stagiairesNonInscrits = $sr->findStagiairesNonInscritsBySessionId($session_id);   
-        // foreach($programmes as $programme){
-        //     dump ($programme);
-        // }die;
+        $stagiairesNonInscrits = $sr->findStagiairesNonInscritsBySessionId($session_id);
 
         return $this->render('session/detail.html.twig', [
             'session' => $session,
