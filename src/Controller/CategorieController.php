@@ -8,6 +8,7 @@ use App\Form\ModuleType;
 use App\Entity\Categorie;
 use App\Form\SessionType;
 use App\Form\CategorieType;
+use App\Repository\ModuleRepository;
 use App\Repository\SessionRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,6 +61,17 @@ class CategorieController extends AbstractController
             'formAddModule' => $form->createView()
         ]);
     }
+
+    #[Route('/categorie/{id}/supprimerModule/{moduleId}', name: 'supprimer_module')]
+    public function supprimerModule(ManagerRegistry $doctrine, Categorie $categorie,ModuleRepository $mr, $moduleId)
+    {
+        $entityManager = $doctrine->getManager();
+        $module = $entityManager->getRepository(Module::class)->find($moduleId);
+        $mr->remove($module);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('detail_categorie', ['id' => $categorie->getId()]);
+    } 
 
 
     // #[Route('/categorie/{id}/delete', name: 'delete_session_categorie')]
