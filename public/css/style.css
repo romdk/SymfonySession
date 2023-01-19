@@ -98,6 +98,7 @@ nav{
 }
 
 nav #imageProfil{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,6 +112,27 @@ nav #imageProfil{
 nav #imageProfil img{
     height: 150px;
     object-fit:cover;
+}
+
+nav #imageProfil .editProfil{
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+    width: 160px;
+    background-color: rgba(0, 0, 0, 0.557) ;
+    transition: .3s;
+}
+
+nav #imageProfil:hover .editProfil {
+    display: flex;
+    cursor: pointer;
+}
+
+nav #imageProfil .editProfil .fa-pen-to-square {
+    color: #f1f1f1;
+    font-size: 1.5rem;
 }
 
 nav #pseudo{
@@ -170,6 +192,8 @@ body{
     align-items: center;
     background-color: #cccccc;
 }
+
+
 
 /* ------------------------------------FORMATIONS-------------------------------- */
 #formationMain{
