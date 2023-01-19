@@ -39,31 +39,28 @@ class ReferentController extends AbstractController
     }
 
     #[Route('/referent/{id}', name: 'detail_referent')]
-    public function detail(Referent $referent, Request $request): Response
+    public function detail(ManagerRegistry $doctrine, Referent $referent, Request $request): Response
     {   
         $sessionsReferent = $referent->getSessions();
         $today = date('d/m/Y');
 
-        // if(!$referent) {
-        //     $referent = new Referent();
-        // }
+        $form = $this->createForm(ReferentType::class, $referent);
+        $form->handleRequest($request);
 
-        // $form = $this->createForm(ReferentType::class, $referent);
-        // $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $referent = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($referent);
+            $entityManager->flush();
 
-        // if($form->isSubmitted() && $form->isValid()) {
-        //     $referent = $form->getData();
-        //     $entityManager = $doctrine->getManager();
-        //     $entityManager->persist($referent);
-        //     $entityManager->flush();
+            return $this->redirectToRoute('detail_referent', ['id' => $referent->getId()]);
+        }
 
-        //     return $this->redirectToRoute('detail_referent');
-        // }
         return $this->render('referent/detail.html.twig', [
-            // 'formEditReferent' => $form->createView()
             'referent' => $referent,
             'sessionsReferent' => $sessionsReferent,
-            'today' => $today
+            'today' => $today,
+            'formAddReferent' => $form->createView()
         ]);
     }
 
@@ -71,7 +68,7 @@ class ReferentController extends AbstractController
     public function delete(ManagerRegistry $doctrine, Referent $referent) {
         $entityManager = $doctrine->getManager();
         $entityManager->remove($referent);
-        $entityManager->flush();
+        $entityManager->flush();    
 
         return $this->redirectToRoute('app_referent');
     }

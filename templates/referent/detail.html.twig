@@ -47,7 +47,27 @@
                 {% endfor %}
             </table>           
         </div>
+        <div id="divBtn">
+            <button id="btnAjout">Modifier</button>
+        </div>
+        <div id="overlay">
+            <div class="form">
+                {{ form_start(formAddReferent) }}
+                <div class="formRow">
+                    {{ form_row(formAddReferent.nom) }}
+                    {{ form_row(formAddReferent.prenom) }}
+                </div>
+                <div class="btnAjouter">
+                    {{ form_row(formAddReferent.ajouter) }}
+                </div>
+                {{ form_end(formAddReferent) }}
+                <i id="btnFermer" class="fa-solid fa-xmark"></i>
+            </div>    
+        </div>
         <a class="btnSupprimerReferent" href="{{ path('delete_referent', {'id': referent.id}) }}">Supprimer le referent</a>
     </div>
 </main>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/referentScript.js') }}"></script>
 {% endblock %}
