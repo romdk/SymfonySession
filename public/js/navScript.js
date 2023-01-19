@@ -4,7 +4,6 @@ const btnSessions = document.getElementById('btnSessions')
 const btnModules = document.getElementById('btnModules')
 const btnReferents = document.getElementById('btnReferents')
 const btnStagiaires = document.getElementById('btnStagiaires')
-const btnProfil = document.getElementById('btnProfil')
 
 btnFormations.addEventListener('click', () => {
     btnFormations.classList.add('btnActive')
@@ -12,7 +11,6 @@ btnFormations.addEventListener('click', () => {
     btnModules.classList.remove('btnActive')
     btnReferents.classList.remove('btnActive')
     btnStagiaires.classList.remove('btnActive')
-    btnProfil.classList.remove('btnActive')
 })
 
 btnSessions.addEventListener('click', () => {
@@ -21,7 +19,6 @@ btnSessions.addEventListener('click', () => {
     btnModules.classList.remove('btnActive')
     btnReferents.classList.remove('btnActive')
     btnStagiaires.classList.remove('btnActive')
-    btnProfil.classList.remove('btnActive')
 })
 
 btnModules.addEventListener('click', () => {
@@ -30,7 +27,6 @@ btnModules.addEventListener('click', () => {
     btnModules.classList.add('btnActive')
     btnReferents.classList.remove('btnActive')
     btnStagiaires.classList.remove('btnActive')
-    btnProfil.classList.remove('btnActive')
 })
 
 btnReferents.addEventListener('click', () => {
@@ -39,7 +35,6 @@ btnReferents.addEventListener('click', () => {
     btnModules.classList.remove('btnActive')
     btnReferents.classList.add('btnActive')
     btnStagiaires.classList.remove('btnActive')
-    btnProfil.classList.remove('btnActive')
 })
 
 btnStagiaires.addEventListener('click', () => {
@@ -48,7 +43,6 @@ btnStagiaires.addEventListener('click', () => {
     btnModules.classList.remove('btnActive')
     btnReferents.classList.remove('btnActive')
     btnStagiaires.classList.add('btnActive')
-    btnProfil.classList.remove('btnActive')
 })
 
 btnProfil.addEventListener('click', () => {
@@ -57,5 +51,4 @@ btnProfil.addEventListener('click', () => {
     btnModules.classList.remove('btnActive')
     btnReferents.classList.remove('btnActive')
     btnStagiaires.classList.remove('btnActive')
-    btnProfil.classList.add('btnActive')
 })
