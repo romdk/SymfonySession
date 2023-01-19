@@ -51,7 +51,35 @@
                 {% endfor %}
             </table>           
         </div>
+        <div id="divBtn">
+            <button id="btnAjout">Modifier</button>
+        </div>
+        <div id="overlay">
+            <div class="form">
+                {{ form_start(formAddStagiaire) }}
+                <div class="formRow">
+                    {{ form_row(formAddStagiaire.nom) }}
+                    {{ form_row(formAddStagiaire.prenom) }}
+                </div>
+                <div class="formRow">
+                    {{ form_row(formAddStagiaire.dateNaissance) }}
+                    {{ form_row(formAddStagiaire.ville) }}
+                </div>
+                <div class="formRow">
+                    {{ form_row(formAddStagiaire.email) }}
+                    {{ form_row(formAddStagiaire.telephone) }}
+                </div>
+                <div class="btnAjouter">
+                    {{ form_row(formAddStagiaire.ajouter) }}
+                </div>
+                {{ form_end(formAddStagiaire) }}
+                <i id="btnFermer" class="fa-solid fa-xmark"></i>
+            </div>    
+        </div>
         <a class="btnSupprimerStagiaire" href="{{ path('delete_stagiaire', {'id': stagiaire.id}) }}">Supprimer le stagiaire</a>
     </div>
 </main>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/stagiaireScript.js') }}"></script>
 {% endblock %}

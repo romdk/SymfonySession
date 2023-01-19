@@ -39,31 +39,29 @@ class StagiaireController extends AbstractController
     }
 
     #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
-    public function detail(Stagiaire $stagiaire, Request $request): Response
+    public function detail(ManagerRegistry $doctrine, Stagiaire $stagiaire, Request $request): Response
     {   
         $sessionsStagiaire = $stagiaire->getSessions();
         $today = date('d/m/Y');
 
-        // if(!$stagiaire) {
-        //     $stagiaire = new Stagiaire();
-        // }
+        $form = $this->createForm(StagiaireType::class, $stagiaire);
+        $form->handleRequest($request);
 
-        // $form = $this->createForm(StagiaireType::class, $stagiaire);
-        // $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $stagiaire = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($stagiaire);
+            $entityManager->flush();
 
-        // if($form->isSubmitted() && $form->isValid()) {
-        //     $stagiaire = $form->getData();
-        //     $entityManager = $doctrine->getManager();
-        //     $entityManager->persist($stagiaire);
-        //     $entityManager->flush();
+            return $this->redirectToRoute('detail_stagiaire', ['id' => $stagiaire->getId()]);
+        }
+        
 
-        //     return $this->redirectToRoute('detail_stagiaire');
-        // }
         return $this->render('stagiaire/detail.html.twig', [
-            // 'formEditStagiaire' => $form->createView()
             'stagiaire' => $stagiaire,
             'sessionsStagiaire' => $sessionsStagiaire,
-            'today' => $today
+            'today' => $today,
+            'formAddStagiaire' => $form->createView()
         ]);
     }
 
