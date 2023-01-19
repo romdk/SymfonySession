@@ -55,13 +55,25 @@ class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}', name: 'detail_session')]
-    public function detail(Session $session, StagiaireRepository $sr, ModuleRepository $mr): Response
+    public function detail(ManagerRegistry $doctrine, Session $session, StagiaireRepository $sr, ModuleRepository $mr, Request $request): Response
     {
         $session_id = $session->getId();
         $programmes = $session->getProgrammes();
         $autresModules = $mr->findAutresModulesBySessionId($session_id);
         $stagiairesInscrits = $session->getStagiaires();
         $stagiairesNonInscrits = $sr->findStagiairesNonInscritsBySessionId($session_id);
+        
+        $form = $this->createForm(SessionType::class, $session);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $session = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($session);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+        }
 
         return $this->render('session/detail.html.twig', [
             'session' => $session,
@@ -69,6 +81,7 @@ class SessionController extends AbstractController
             'autresModules' => $autresModules,
             'stagiairesInscrits' => $stagiairesInscrits,
             'stagiairesNonInscrits' => $stagiairesNonInscrits,
+            'formAddSession' => $form->createView()
         ]);
     }
 
