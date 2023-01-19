@@ -13,7 +13,10 @@
     </head>
     {% if app.user %}
             <nav>
-                <span id="imageProfil"><img src="{{ asset('images/' ~ app.user.image ) }}" alt=""></span>
+                <span id="imageProfil">
+                    <img src="{{ asset('images/' ~ app.user.image ) }}" alt="">
+                    <a href="{{ path('edit_user', {'id': user.id}) }}" class="editProfil"><i class="fa-solid fa-pen-to-square"></i></a>
+                </span>
                 <span id="pseudo">{{ app.user.pseudo }}</span>
                 <ul>
                     <li><a id="btnFormations" class="btnActive" href="{{ path('app_formation') }}">Formations</a></li>   
@@ -21,7 +24,6 @@
                     <li><a id="btnModules" href="{{ path('app_categorie') }}">Modules</a></li>   
                     <li><a id="btnReferents" href="{{ path('app_referent') }}">Référents</a></li>   
                     <li><a id="btnStagiaires" href="{{ path('app_stagiaire') }}">Stagiaires</a></li>   
-                    <li><a id="btnProfil" href="">Mon profil</a></li>   
                     <li><a id="btnDeconnexion" href="{{ path('app_logout') }}">Deconnexion</a></li>
                 </ul>                
             </nav>
