@@ -1,15 +1,19 @@
 nav : selecteur qui reste apres refresh
 
-liste sessions : edit session
+profil: edit photo, nom
 
-details session : ajouter module, empecher inscription si session pleine
+detail referent : supprimer referent->afficher erreur si le referent a des sessions
 
-detail stagiaire : modifier info
+CSS: cards formation
+     sessions btn action
+     formulaires
+     formation detail flex start
+     session detail btn edit, btn ajout module, form btn fermer
+     cards categorie
+     referent btn edit
+     stagiaire btn edit
 
-detail referent : modifier info, supprimer referent
 
-liste categories :
 
-detail categorie :
 
 
