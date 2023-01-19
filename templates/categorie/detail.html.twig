@@ -3,13 +3,20 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-<main id="categorieMain">
+<main id="detailCategorieMain">
     <h2>{{ categorie.nomCategorie }}</h2>
-    {% for module in categorie.modules %}
-        {{ module }}
-    {% endfor %}
-    <div id="divBtn">
-        <button id="btnAjout">Ajouter un module</button>
+    <div class="modules">
+        <ul>
+            {% for module in categorie.modules %}
+                <li>
+                    <span class="module">{{ module }}</span>
+                    <a href="{{ path('supprimer_module', {'id':categorie.id,'moduleId': module.id}) }}"><i class="fa-solid fa-xmark"></i></a>
+                </li>
+            {% endfor %}
+        </ul>
+        <div id="divBtn">
+            <button id="btnAjout">Ajouter un module</button>
+        </div>
     </div>
     <div id="overlay">
         <div class="form">

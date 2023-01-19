@@ -501,6 +501,55 @@ body{
     z-index: 1;
 }
 
+/* ------------------------------------------------------DETAIL CATEGORIES--------------------------------- */
+
+#detailCategorieMain{
+    width: 88vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#detailCategorieMain .modules{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #dddddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#detailCategorieMain ul {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: visible;
+}
+
+#detailCategorieMain li{
+    position: relative;
+    overflow: visible;
+    list-style: none;
+}
+
+#detailCategorieMain .fa-xmark{
+    position: absolute;
+    top: 5px;
+    right: -10px;
+    color: #f1f1f1;
+    background-color: #892E2E;
+    padding:  4px 8px;
+    border-radius: 0 20px 20px 0;
+}
+
+#detailCategorieMain .fa-xmark:hover{
+    background-color: #5f2121;
+}
+
 /* -------------------------------------------------------- */
 
 #detailMain{
