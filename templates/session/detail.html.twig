@@ -39,12 +39,16 @@
         <div class="modules">
             <h3>Programme</h3>
             <ul>
-                {% for programme in programmes %}
+                {% if programmes | length == 0 %}
+                    <span>Aucun programme</span>
+                {% else %}                    
+                    {% for programme in programmes %}
                     <li>
                         <span class="module" >{{ programme.module.categorie.nomCategorie ~ ': ' ~ programme.module.nomModule ~ ' (' ~ programme.duree ~ ' Jours)'}}</span>
                         <a href="{{ path('retirer_programme', {'id':session.id,'programmeId': programme.id}) }}"><i class="fa-solid fa-xmark"></i></a>
                     </li>
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
             </ul>
             <h3 class="autresModules">Autres modules</h3>
             <ul>
@@ -64,12 +68,16 @@
             <div class="inscrits">
                 <h3>Stagiaires inscrits</h3>
                 <ul>
-                    {% for stagiaire in stagiairesInscrits %}
-                    <li>
-                        <a class="stagiaire" href="{{ path('detail_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom ~ ' ' ~ stagiaire.prenom}}</a>
-                        <a href="{{ path('desinscrire_stagiaire', {'id':session.id,'stagiaireId': stagiaire.id}) }}"><i class="fa-solid fa-xmark"></i></a>
-                    </li>
-                    {% endfor %}
+                    {% if stagiairesInscrits | length == 0 %}
+                        <span>Aucun stagiaire</span>
+                    {% else %}                        
+                        {% for stagiaire in stagiairesInscrits %}
+                        <li>
+                            <a class="stagiaire" href="{{ path('detail_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom ~ ' ' ~ stagiaire.prenom}}</a>
+                            <a href="{{ path('desinscrire_stagiaire', {'id':session.id,'stagiaireId': stagiaire.id}) }}"><i class="fa-solid fa-xmark"></i></a>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
                 </ul>
             </div>
             <div class="nonInscrits">
