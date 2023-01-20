@@ -3,17 +3,20 @@
 {% block title %}Modifier le profil{% endblock %}
 
 {% block body %}
-<div class="form">
-    {{ form_start(formEditUser) }}
-    <div class="formRow">
-        {{ form_row(formEditUser.pseudo) }}
-    </div>
-    <div class="formRow">
-        {{ form_row(formEditUser.image) }}
-    </div>
-    <div class="btnAjouter">
-        {{ form_row(formEditUser.ajouter) }}
-    </div>
-    {{ form_end(formEditUser) }}
-</div>    
+<main id="editMain">
+    <div class="form">
+        <h2>Editer le profil</h2>
+        {{ form_start(formEditUser) }}
+        <div class="formRow">
+            {{ form_row(formEditUser.pseudo) }}
+        </div>
+        <div class="formRow">
+            {{ form_row(formEditUser.image) }}
+        </div>
+        <div class="btnAjouter">
+            {{ form_row(formEditUser.ajouter) }}
+        </div>
+        {{ form_end(formEditUser) }}
+    </div> 
+</main>   
 {% endblock %}

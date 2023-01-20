@@ -6,9 +6,6 @@
 <main id="detailSessionMain">
     <div class="infos">
         <h2>{{ session.nomSession }}</h2>
-        <div id="divBtn">
-            <i id="btnAjout" class="fa-solid fa-pen-to-square"></i>
-        </div>
         <div id="overlay">
             <div class="form">
                 {{ form_start(formAddSession) }}
@@ -30,6 +27,9 @@
             </div>    
         </div>       
         <div class="session">
+            <div id="divBtn">
+                <i id="btnAjout" class="fa-solid fa-pen-to-square"></i>
+            </div>
             <span>Référent: {{ session.referent.prenom ~ ' ' ~ session.referent.nom}}</span>
             <span>Date de début: {{ session.dateDebut | date('d/m/Y') }}</span>
             <span>Date de fin: {{ session.datefin | date('d/m/Y') }}</span>

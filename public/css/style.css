@@ -78,6 +78,42 @@
     background-color: #0a74d8;
 }
 
+/* ----------------------------------------EDIT USER----------------------------- */
+#editMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100vh;
+    width: 88vw;
+}
+
+#editMain .form{
+    background-color: #dddddd;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
+}
+
+#editMain .form h2{
+    width: 100%;
+    text-align: center;
+}
+
+#editMain .form .btnAjouter{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 /* -------------------------------------------NAV-------------------------------- */
 nav{
     position: fixed;
@@ -198,32 +234,43 @@ body{
 /* ------------------------------------FORMATIONS-------------------------------- */
 #formationMain{
     width: 88vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 
 .formations{
+    background-color: #dddddd;
+    padding: 20px;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
     width: 1240px;
-    height: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
+}
+
+.formations h2{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .formations .card{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 200px;
+    width: 300px;
+    height: 100px;
     background-color: #2A3436;
     color: #F1F1F1;
+    box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
 }
 
 #formationMain #divBtn{
@@ -327,6 +374,24 @@ body{
         gap: 10px;
     }
 
+    .actions .fa-arrow-up-right-from-square{
+        color: #0085FF;
+        transition: .3s;
+    }
+
+    .actions .fa-arrow-up-right-from-square:hover{
+        color: #00529f;
+    }
+
+    .actions .fa-xmark{
+        color: #ab0d0d;
+        transition: .3s;
+    }
+
+    .actions .fa-xmark:hover{
+        color: #6d0000;
+    }
+
 /* -----------------------------------------DETAILS SESSION------------------------ */
 
 #detailSessionMain .fa-plus{
@@ -343,7 +408,7 @@ body{
     background-color: rgb(3, 83, 3);
 }
 
-#detailSessionMain .fa-xmark{
+.modules .fa-xmark, #detailSessionMain .stagiaires .fa-xmark {
     position: absolute;
     top: 0;
     right: -10px;
@@ -353,7 +418,7 @@ body{
     border-radius: 0 20px 20px 0;
 }
 
-#detailSessionMain .fa-xmark:hover{
+#detailSessionMain .modules .fa-xmark:hover{
     background-color: #5f2121;
 }
 #detailSessionMain h3{
@@ -404,6 +469,7 @@ body{
 }
 
 .infos .session{
+    position: relative;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -465,6 +531,10 @@ body{
     text-align: center;
 }
 
+.module input.fa-solid.fa-plus{
+    width: 30px;
+}
+
 .infos .stagiaires {
     margin-top: 10px;
     display: flex;
@@ -483,35 +553,53 @@ body{
     width: 100%;
     margin-top: 30px;
 }
+
+#detailSessionMain .session #divBtn{
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    width: fit-content;
+}
 /* ----------------------------------------------------CATEGORIES---------------------------------- */
 #categorieMain{
     width: 88vw;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .categories{
+    background-color: #dddddd;
+    padding: 20px;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
     width: 1240px;
-    height: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
+}
+
+.categories h2{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .categories .card{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 200px;
+    width: 300px;
+    height: 100px;
     background-color: #2A3436;
     color: #F1F1F1;
+    box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
 }
 
 #categorieMain #divBtn{
@@ -560,7 +648,7 @@ body{
     list-style: none;
 }
 
-#detailCategorieMain .fa-xmark{
+#detailCategorieMain .modules .fa-xmark{
     position: absolute;
     top: 5px;
     right: -10px;
@@ -568,10 +656,6 @@ body{
     background-color: #892E2E;
     padding:  4px 8px;
     border-radius: 0 20px 20px 0;
-}
-
-#detailCategorieMain .fa-xmark:hover{
-    background-color: #5f2121;
 }
 
 /* -------------------------------------------------------- */
@@ -657,6 +741,7 @@ body{
 }
 
 .infosReferent {
+    position: relative;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -683,9 +768,15 @@ body{
     text-transform: uppercase;
     transition: .2s;
 }
-.btnSupprimerReferent:hover{
-    
+.btnSupprimerReferent:hover{    
     background-color: #5f2121;
+}
+
+#detailMain .infosReferent #divBtn{
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    width: fit-content;
 }
 /* ------------------------------STAGIAIRES---------------------------- */
 
@@ -846,6 +937,7 @@ body{
 }
 
 .infosStagiaire {
+    position: relative;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -863,6 +955,17 @@ body{
     margin-top: 20px;
 }
 
+ .sessionsStagiaire .actions .fa-user-xmark{
+    color: #7e0909;
+    transition: .3s;
+ }
+
+ .sessionsStagiaire .actions .fa-user-xmark:hover{
+    color: #6d0000;
+ }
+
+
+
 .btnSupprimerStagiaire{
     margin-top: 30px;
     padding: 10px;
@@ -879,6 +982,13 @@ body{
 
 .hidden {
     display: none;
+}
+
+#detailMain .infosStagiaire #divBtn{
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    width: fit-content;
 }
 
 
