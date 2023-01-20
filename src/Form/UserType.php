@@ -38,7 +38,7 @@ class UserType extends AbstractType
                     ])
                 ],
             ])
-            ->add('ajouter', SubmitType::class)
+            ->add('valider', SubmitType::class)
         ;
     }
 
