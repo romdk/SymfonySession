@@ -7,6 +7,9 @@
     <div class="ficheStagiaire">
         <h2>Fiche stagiaire</h2>
         <div class="infosStagiaire">
+            <div id="divBtn">
+                <i id="btnAjout" class="fa-solid fa-pen-to-square"></i>
+            </div>
             <span>Nom: {{ stagiaire.nom}}</span>
             <span>Prenom: {{ stagiaire.prenom }}</span>
             <span>Date de naissance: {{ stagiaire.dateNaissance | date('d/m/Y') }}</span>
@@ -14,8 +17,12 @@
             <span>Email: {{ stagiaire.email }}</span>
             <span>Téléphone: {{ stagiaire.telephone }}</span>
         </div>
+        
         <div class="sessionsStagiaire">
             <h2>Sessions</h2>
+            {% if stagiaire.sessions | length == 0 %}
+                <span>Aucune session</span>
+            {% else %}
             <table id="currentSessions">
                 <tr>
                     <th>Statut</th>
@@ -50,9 +57,7 @@
                 </tr>                
                 {% endfor %}
             </table>           
-        </div>
-        <div id="divBtn">
-            <button id="btnAjout">Modifier</button>
+            {% endif %}
         </div>
         <div id="overlay">
             <div class="form">
