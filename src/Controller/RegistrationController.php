@@ -4,11 +4,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Security\EmailVerifier;
-use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
 use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -87,27 +85,5 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute('app_register');
-    }
-
-    #[Route('/userEdit', name: 'edit_user')]
-    public function edit(ManagerRegistry $doctrine, User $user, Request $request): Response
-    {
-
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $user = $form->getData();
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('edit_user');
-        }
-
-        return $this->render('security/userEdit.html.twig', [
-            'formEditUser' => $form->createView(),
-        ]);
     }
 }
