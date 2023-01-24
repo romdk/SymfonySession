@@ -19,18 +19,18 @@
                 </span>
                 <span id="pseudo">{{ app.user.pseudo }}</span>
                 <ul>
-                    <li><a id="btnFormations" class="btnActive" href="{{ path('app_formation') }}">Formations</a></li>   
-                    <li><a id="btnSessions" href="{{ path('app_session') }}">Sessions</a></li>   
-                    <li><a id="btnModules" href="{{ path('app_categorie') }}">Modules</a></li>   
-                    <li><a id="btnReferents" href="{{ path('app_referent') }}">Référents</a></li>   
-                    <li><a id="btnStagiaires" href="{{ path('app_stagiaire') }}">Stagiaires</a></li>   
-                    <li><a id="btnDeconnexion" href="{{ path('app_logout') }}">Deconnexion</a></li>
+                    <li><a id="btnFormations" class="navLink " href="{{ path('app_formation') }}">Formations</a></li>   
+                    <li><a id="btnSessions" class="navLink" href="{{ path('app_session') }}">Sessions</a></li>   
+                    <li><a id="btnModules" class="navLink" href="{{ path('app_categorie') }}">Modules</a></li>   
+                    <li><a id="btnReferents" class="navLink" href="{{ path('app_referent') }}">Référents</a></li>   
+                    <li><a id="btnStagiaires" class="navLink" href="{{ path('app_stagiaire') }}">Stagiaires</a></li>   
+                    <li><a id="btnDeconnexion" class="navLink" href="{{ path('app_logout') }}">Deconnexion</a></li>
                 </ul>                
             </nav>
             {% endif %}
             {% block body %}
             {% endblock %}
             {% block javascripts %}
-                <script src="{{ asset('js/navScript.js') }}"></script>
+                <script src="{{ asset('js/script.js') }}"></script>
             {% endblock %}
 </html>
