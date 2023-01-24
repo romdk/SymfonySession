@@ -1,21 +1,3 @@
-// ------------------------------------- Nav Menu -----------------------------
-
-const link = document.querySelectorAll('.navLink');
-
-let prevActive = localStorage.getItem('activeId');
-if(prevActive){ document.getElementById(prevActive).classList.add('btnActive')}
-
-for (let i = 0; i < link.length; i++) {
-    link[i].onclick = function() {
-        for (let j = 0; j < link.length; j++) {
-            link[j].classList.remove('btnActive');
-        }
-        this.classList.add('btnActive');
-        localStorage.setItem('activeId', this.id);
-    }
-}
-
-
 // -------------------------------------------------------AFFICHER FORMULAIRE------------------------------------
 const btnAjout = document.getElementById('btnAjout');
 const overlay = document.getElementById('overlay');
