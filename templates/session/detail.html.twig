@@ -56,7 +56,7 @@
                 <li>
                     <form action="{{ path('ajouter_programme', {'id':session.id,'moduleId': module.id}) }}" method="post">
                         <span class="module">{{ module.nomModule }} 
-                            <input name="duree" type="number" placeholder="Jours"> 
+                            <input name="duree" type="number" placeholder="Jours" min="1"> 
                             <input name="submitProgramme" type="submit" value="+" class="fa-solid fa-plus">
                         </span>
                     </form>
@@ -83,7 +83,7 @@
             <div class="nonInscrits">
                 <h3>Stagiaires non inscrits</h3>
                 <div class="searchBar">
-                    <input id="searchBar" onkeyup="affStagiaires()" type="text" placeholder="Rechercher un stagiaire">
+                    <input id="searchBar" onkeyup="affPersonnes()" type="text" placeholder="Rechercher un stagiaire">
                 </div>
                 <ul id='results'>
                     {% for stagiaire in stagiairesNonInscrits %}
@@ -100,6 +100,6 @@
     </div>
 </main>
 {% endblock %}
-{% block javascripts %}
+{# {% block javascripts %}
                 <script src="{{ asset('js/stagiaireScript.js') }}"></script>
-{% endblock %}
+{% endblock %} #}
