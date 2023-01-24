@@ -392,6 +392,26 @@ body{
         color: #6d0000;
     }
 
+    .fa-circle{
+        font-size: .6rem;
+    }
+
+    .enCours{
+        color: orange;
+    }
+
+    .termine{
+        color: rgb(101, 101, 101);
+    }
+
+    .complet{
+        color: rgb(136, 43, 43);
+    }
+
+    .disponible{
+        color: rgb(26, 134, 72);
+    }
+
 /* -----------------------------------------DETAILS SESSION------------------------ */
 
 #detailSessionMain .fa-plus{
