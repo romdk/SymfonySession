@@ -48,7 +48,7 @@ class StagiaireController extends AbstractController
     { 
         if($this->getUser()){   
             $sessionsStagiaire = $stagiaire->getSessions();
-            $today = date('d/m/Y');
+            $today = new \DateTime();
 
             $form = $this->createForm(StagiaireType::class, $stagiaire);
             $form->handleRequest($request);
