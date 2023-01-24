@@ -22,125 +22,165 @@ class SessionController extends AbstractController
 {
     #[Route('/session', name: 'app_session')]
     public function index(ManagerRegistry $doctrine, SessionRepository $sr, Session $session = null, Request $request): Response
-    {
-        $today = date('d/m/Y');
-        // récuperer les sessions de la bdd
-        $pastSessions = $sr->findPastSessions();
-        $currentSessions = $sr->findCurrentSessions();
-        $upcomingSessions = $sr->findUpcomingSessions();
+    { 
+        if($this->getUser()){
+            
+            $today = new \DateTime();
+            // récuperer les sessions de la bdd
+            $pastSessions = $sr->findPastSessions();
+            $currentSessions = $sr->findCurrentSessions();
+            $upcomingSessions = $sr->findUpcomingSessions();
 
-        // if(!$session) {
-        //     $session = new Session();
-        // }
+            // if(!$session) {
+            //     $session = new Session();
+            // }
 
-        $sessions = $doctrine->getRepository(Session::class)->findAll();
-        $form = $this->createForm(SessionType::class, $session);
-        $form->handleRequest($request);
+            $sessions = $doctrine->getRepository(Session::class)->findAll();
+            $form = $this->createForm(SessionType::class, $session);
+            $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $session = $form->getData();
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($session);
-            $entityManager->flush();
+            if($form->isSubmitted() && $form->isValid()) {
+                $session = $form->getData();
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($session);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_session');
-        }
-        return $this->render('session/index.html.twig', [
-            'today' => $today,
-            'pastSessions' => $pastSessions,
-            'currentSessions' => $currentSessions,
-            'upcomingSessions' => $upcomingSessions,
-            'formAddSession' => $form->createView(),
-        ]);
+                return $this->redirectToRoute('app_session');
+            }
+            return $this->render('session/index.html.twig', [
+                //'today' => $today,
+                'pastSessions' => $pastSessions,
+                'currentSessions' => $currentSessions,
+                'upcomingSessions' => $upcomingSessions,
+                'formAddSession' => $form->createView(),
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
+            }
     }
 
     #[Route('/session/{id}', name: 'detail_session')]
     public function detail(ManagerRegistry $doctrine, Session $session, StagiaireRepository $sr, ModuleRepository $mr, Request $request): Response
-    {
-        $session_id = $session->getId();
-        $programmes = $session->getProgrammes();
-        $autresModules = $mr->findAutresModulesBySessionId($session_id);
-        $stagiairesInscrits = $session->getStagiaires();
-        $stagiairesNonInscrits = $sr->findStagiairesNonInscritsBySessionId($session_id);
-        
-        $form = $this->createForm(SessionType::class, $session);
-        $form->handleRequest($request);
+    { 
+        if($this->getUser()){
+            
+            $session_id = $session->getId();
+            $programmes = $session->getProgrammes();
+            $autresModules = $mr->findAutresModulesBySessionId($session_id);
+            $stagiairesInscrits = $session->getStagiaires();
+            $stagiairesNonInscrits = $sr->findStagiairesNonInscritsBySessionId($session_id);
+            
+            $form = $this->createForm(SessionType::class, $session);
+            $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $session = $form->getData();
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($session);
-            $entityManager->flush();
+            if($form->isSubmitted() && $form->isValid()) {
+                $session = $form->getData();
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($session);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
-        }
+                return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+            }
 
-        return $this->render('session/detail.html.twig', [
-            'session' => $session,
-            'programmes' => $programmes,
-            'autresModules' => $autresModules,
-            'stagiairesInscrits' => $stagiairesInscrits,
-            'stagiairesNonInscrits' => $stagiairesNonInscrits,
-            'formAddSession' => $form->createView()
-        ]);
+            return $this->render('session/detail.html.twig', [
+                'session' => $session,
+                'programmes' => $programmes,
+                'autresModules' => $autresModules,
+                'stagiairesInscrits' => $stagiairesInscrits,
+                'stagiairesNonInscrits' => $stagiairesNonInscrits,
+                'formAddSession' => $form->createView()
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
+            }
     }
 
     #[Route('/session/{id}/ajouterProgramme/{moduleId}', name: 'ajouter_programme')]
     public function ajouterProgramme(ManagerRegistry $doctrine, Session $session, $moduleId)
-    {
-        if(isset($_POST['submitProgramme'])){
-            $duree =filter_input(INPUT_POST,"duree",FILTER_VALIDATE_INT);
-            $entityManager = $doctrine->getManager();
-            $module = $entityManager->getRepository(Module::class)->find($moduleId);
-            $programme = new Programme();
-            $programme->setDuree($duree);
-            $programme->setModule($module);
-            $programme->setSession($session);
-            $entityManager->persist($programme);
-            $entityManager->flush();
-            return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
-        }
+    { 
+        if($this->getUser()){
+            
+            if(isset($_POST['submitProgramme'])){
+                $duree =filter_input(INPUT_POST,"duree",FILTER_VALIDATE_INT);
+                if($duree > 0){
+                    $entityManager = $doctrine->getManager();
+                    $module = $entityManager->getRepository(Module::class)->find($moduleId);
+                    $programme = new Programme();
+                    $programme->setDuree($duree);
+                    $programme->setModule($module);
+                    $programme->setSession($session);
+                    $entityManager->persist($programme);
+                    $entityManager->flush();
+                    return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+                }
+            } else {
+                return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+                }
+        } else {
+            return $this->redirectToRoute('app_login');
+            }
     }
 
     #[Route('/session/{id}/retirerProgramme/{programmeId}', name: 'retirer_programme')]
     public function retirerProgramme(ManagerRegistry $doctrine, Session $session,ProgrammeRepository $pr, $programmeId)
-    {
-        $entityManager = $doctrine->getManager();
-        $programme = $entityManager->getRepository(Programme::class)->find($programmeId);
-        $pr->remove($programme);
-        $entityManager->flush();
+    { 
+        if($this->getUser()){
+            
+            $entityManager = $doctrine->getManager();
+            $programme = $entityManager->getRepository(Programme::class)->find($programmeId);
+            $pr->remove($programme);
+            $entityManager->flush();
 
-        return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+            return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+        } else {
+            return $this->redirectToRoute('app_login');
+            }
     } 
 
     #[Route('/session/{id}/desinscrire/{stagiaireId}', name: 'desinscrire_stagiaire')]
     public function desinscrireStagiaire(ManagerRegistry $doctrine, Session $session, $stagiaireId)
     {
-        $entityManager = $doctrine->getManager();
-        $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($stagiaireId);
-        $session->removeStagiaire($stagiaire);
-        $entityManager->flush();
+        if($this->getUser()){
+        
+            $entityManager = $doctrine->getManager();
+            $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($stagiaireId);
+            $session->removeStagiaire($stagiaire);
+            $entityManager->flush();
 
-        return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+            return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+        } else {
+        return $this->redirectToRoute('app_login');
+        }
     }
 
     #[Route('/session/{id}/inscrire/{stagiaireId}', name: 'inscrire_stagiaire')]
     public function inscrireStagiaire(ManagerRegistry $doctrine, Session $session, $stagiaireId)
     {
-        $entityManager = $doctrine->getManager();
-        $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($stagiaireId);
-        $session->addStagiaire($stagiaire);
-        $entityManager->flush();
+        if($this->getUser()){
 
-        return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+            $entityManager = $doctrine->getManager();
+            $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($stagiaireId);
+            $session->addStagiaire($stagiaire);
+            $entityManager->flush();
+    
+            return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 
     #[Route('/session/{id}/delete', name: 'delete_session')]
-    public function delete(ManagerRegistry $doctrine, Session $session) {
+    public function delete(ManagerRegistry $doctrine, Session $session)
+    {
+        if($this->getUser()){
+
         $entityManager = $doctrine->getManager();
         $entityManager->remove($session);
         $entityManager->flush();
 
         return $this->redirectToRoute('app_session');
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 }

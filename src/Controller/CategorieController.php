@@ -21,56 +21,68 @@ class CategorieController extends AbstractController
     #[Route('/categorie', name: 'app_categorie')]
     public function index(ManagerRegistry $doctrine, Categorie $categorie = null, Request $request): Response
     {
-        // récuperer les categories de la bdd
-        $categories = $doctrine->getRepository(Categorie::class)->findAll();
-        $form = $this->createForm(CategorieType::class, $categorie);
-        $form->handleRequest($request);
+        if($this->getUser()){
+            // récuperer les categories de la bdd
+            $categories = $doctrine->getRepository(Categorie::class)->findAll();
+            $form = $this->createForm(CategorieType::class, $categorie);
+            $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $categorie = $form->getData();
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($categorie);
-            $entityManager->flush();
+            if($form->isSubmitted() && $form->isValid()) {
+                $categorie = $form->getData();
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($categorie);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_categorie');
-        }
-        return $this->render('categorie/index.html.twig', [
-            'categories' => $categories,
-            'formAddCategorie' => $form->createView()
-        ]);
+                return $this->redirectToRoute('app_categorie');
+            }
+            return $this->render('categorie/index.html.twig', [
+                'categories' => $categories,
+                'formAddCategorie' => $form->createView()
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
+            }    
     }
 
     #[Route('/categorie/{id}', name: 'detail_categorie')]
     public function detail(Categorie $categorie, ManagerRegistry $doctrine, Module $module = null, Request $request): Response
-    {   
-        $id = $request->attributes->get('_route_params');
+    {
+        if($this->getUser()){
+            $id = $request->attributes->get('_route_params');
 
-        $form = $this->createForm(ModuleType::class, $module);
-        $form->handleRequest($request);
+            $form = $this->createForm(ModuleType::class, $module);
+            $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {  
-            $module = $form->getData();
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($module);
-            $entityManager->flush();
+            if($form->isSubmitted() && $form->isValid()) {  
+                $module = $form->getData();
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($module);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('detail_categorie', ['id' => $id]);
-        }
-        return $this->render('categorie/detail.html.twig', [
-            'categorie' => $categorie,
-            'formAddModule' => $form->createView()
-        ]);
+                return $this->redirectToRoute('detail_categorie', ['id' => $id]);
+            }
+            return $this->render('categorie/detail.html.twig', [
+                'categorie' => $categorie,
+                'formAddModule' => $form->createView()
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
+            }    
     }
 
     #[Route('/categorie/{id}/supprimerModule/{moduleId}', name: 'supprimer_module')]
     public function supprimerModule(ManagerRegistry $doctrine, Categorie $categorie,ModuleRepository $mr, $moduleId)
     {
-        $entityManager = $doctrine->getManager();
-        $module = $entityManager->getRepository(Module::class)->find($moduleId);
-        $mr->remove($module);
-        $entityManager->flush();
+        if($this->getUser()){
+            $entityManager = $doctrine->getManager();
+            $module = $entityManager->getRepository(Module::class)->find($moduleId);
+            $mr->remove($module);
+            $entityManager->flush();
 
-        return $this->redirectToRoute('detail_categorie', ['id' => $categorie->getId()]);
+            return $this->redirectToRoute('detail_categorie', ['id' => $categorie->getId()]);
+        } else {
+            return $this->redirectToRoute('app_login');
+            }
     } 
 
 

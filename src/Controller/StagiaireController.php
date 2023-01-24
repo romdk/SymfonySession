@@ -15,64 +15,78 @@ class StagiaireController extends AbstractController
 {
     #[Route('/stagiaire', name: 'app_stagiaire')]
     public function index(ManagerRegistry $doctrine, Stagiaire $stagiaire = null, Request $request): Response
-    {
-        if(!$stagiaire) {
-            $stagiaire = new Stagiaire();
-        }
+    { 
+        if($this->getUser()){
+            if(!$stagiaire) {
+                $stagiaire = new Stagiaire();
+            }
 
-        $stagiaires = $doctrine->getRepository(Stagiaire::class)->findAll();
-        $form = $this->createForm(StagiaireType::class, $stagiaire);
-        $form->handleRequest($request);
+            $stagiaires = $doctrine->getRepository(Stagiaire::class)->findAll();
+            $form = $this->createForm(StagiaireType::class, $stagiaire);
+            $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $stagiaire = $form->getData();
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($stagiaire);
-            $entityManager->flush();
+            if($form->isSubmitted() && $form->isValid()) {
+                $stagiaire = $form->getData();
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($stagiaire);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_stagiaire');
-        }
-        return $this->render('stagiaire/index.html.twig', [
-            'stagiaires' => $stagiaires,
-            'formAddStagiaire' => $form->createView()
-        ]);
+                return $this->redirectToRoute('app_stagiaire');
+            }
+            return $this->render('stagiaire/index.html.twig', [
+                'stagiaires' => $stagiaires,
+                'formAddStagiaire' => $form->createView()
+            ]);
+        
+        } else {
+            return $this->redirectToRoute('app_login');
+            }
     }
 
     #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
     public function detail(ManagerRegistry $doctrine, Stagiaire $stagiaire, Request $request): Response
-    {   
-        $sessionsStagiaire = $stagiaire->getSessions();
-        $today = date('d/m/Y');
+    { 
+        if($this->getUser()){   
+            $sessionsStagiaire = $stagiaire->getSessions();
+            $today = date('d/m/Y');
 
-        $form = $this->createForm(StagiaireType::class, $stagiaire);
-        $form->handleRequest($request);
+            $form = $this->createForm(StagiaireType::class, $stagiaire);
+            $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $stagiaire = $form->getData();
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($stagiaire);
-            $entityManager->flush();
+            if($form->isSubmitted() && $form->isValid()) {
+                $stagiaire = $form->getData();
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($stagiaire);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('detail_stagiaire', ['id' => $stagiaire->getId()]);
-        }
+                return $this->redirectToRoute('detail_stagiaire', ['id' => $stagiaire->getId()]);
+            }
+            
+
+            return $this->render('stagiaire/detail.html.twig', [
+                'stagiaire' => $stagiaire,
+                'sessionsStagiaire' => $sessionsStagiaire,
+                'today' => $today,
+                'formAddStagiaire' => $form->createView()
+            ]);
         
-
-        return $this->render('stagiaire/detail.html.twig', [
-            'stagiaire' => $stagiaire,
-            'sessionsStagiaire' => $sessionsStagiaire,
-            'today' => $today,
-            'formAddStagiaire' => $form->createView()
-        ]);
+        } else {
+            return $this->redirectToRoute('app_login');
+            }
     }
 
     #[Route('/stagiaire/{id}/delete', name: 'delete_stagiaire')]
-    public function delete(ManagerRegistry $doctrine, Stagiaire $stagiaire) {
-        $entityManager = $doctrine->getManager();
-        $entityManager->remove($stagiaire);
-        $entityManager->flush();
+    public function delete(ManagerRegistry $doctrine, Stagiaire $stagiaire)
+    { 
+        if($this->getUser()){
+            $entityManager = $doctrine->getManager();
+            $entityManager->remove($stagiaire);
+            $entityManager->flush();
 
-        return $this->redirectToRoute('app_stagiaire');
-    }
-
-    
+            return $this->redirectToRoute('app_stagiaire');
+        
+        } else {
+            return $this->redirectToRoute('app_login');
+            }
+    }    
 }

@@ -18,9 +18,9 @@ class SecurityController extends AbstractController
     #[Route(path: '/', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        if($this->getUser()){
+            return $this->redirectToRoute('app_formation');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -39,45 +39,50 @@ class SecurityController extends AbstractController
     #[Route('/userEdit/{id}', name: 'edit_user')]
     public function edit(ManagerRegistry $doctrine, User $user, Request $request, SluggerInterface $slugger): Response
     {
+        if($this->getUser()){
 
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+            $form = $this->createForm(UserType::class, $user);
+            $form->handleRequest($request);
 
-        $file = $form->get('image')->getData();
+            $file = $form->get('image')->getData();
 
-        if ($file) {
-            // recupere le nom du fichier original
-            $originalFileName = pathinfo($file->getClientOriginalName(), flags:PATHINFO_FILENAME);
-            // trasforme le nom du fichier en une string qui contient que des caracteres ASCII
-            $safeFileName = $slugger->slug($originalFileName);
-            // ajout un id unique au fichier pour eviter les doublons
-            $newFileName = $safeFileName.'-'.uniqid().'.'.$file->guessExtension();
+            if ($file) {
+                // recupere le nom du fichier original
+                $originalFileName = pathinfo($file->getClientOriginalName(), flags:PATHINFO_FILENAME);
+                // trasforme le nom du fichier en une string qui contient que des caracteres ASCII
+                $safeFileName = $slugger->slug($originalFileName);
+                // ajout un id unique au fichier pour eviter les doublons
+                $newFileName = $safeFileName.'-'.uniqid().'.'.$file->guessExtension();
 
-            // deplace le fichier uploader dans le bon dossier
-            try{
-                $file->move(
-                    $this->getParameter(name:'user_directory'),
-                    $newFileName
-                );
-            } catch (FileExeption $e) {
+                // deplace le fichier uploader dans le bon dossier
+                try{
+                    $file->move(
+                        $this->getParameter(name:'user_directory'),
+                        $newFileName
+                    );
+                } catch (FileExeption $e) {
 
+                }
+
+                $user->setImage($newFileName);
             }
 
-            $user->setImage($newFileName);
-        }
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $user = $form->getData();
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $user = $form->getData();
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+                return $this->redirectToRoute('edit_user', ['id' => $user->getId()]);
+            }
 
-            return $this->redirectToRoute('edit_user', ['id' => $user->getId()]);
-        }
-
-        return $this->render('security/userEdit.html.twig', [
-            'formEditUser' => $form->createView(),
-        ]);
+            return $this->render('security/userEdit.html.twig', [
+                'formEditUser' => $form->createView(),
+            ]);
+            
+        } else {
+            return $this->redirectToRoute('app_login');
+            }
     }
 }
