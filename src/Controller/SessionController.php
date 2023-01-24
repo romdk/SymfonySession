@@ -31,10 +31,6 @@ class SessionController extends AbstractController
             $currentSessions = $sr->findCurrentSessions();
             $upcomingSessions = $sr->findUpcomingSessions();
 
-            // if(!$session) {
-            //     $session = new Session();
-            // }
-
             $sessions = $doctrine->getRepository(Session::class)->findAll();
             $form = $this->createForm(SessionType::class, $session);
             $form->handleRequest($request);
@@ -48,7 +44,7 @@ class SessionController extends AbstractController
                 return $this->redirectToRoute('app_session');
             }
             return $this->render('session/index.html.twig', [
-                //'today' => $today,
+                'today' => $today,
                 'pastSessions' => $pastSessions,
                 'currentSessions' => $currentSessions,
                 'upcomingSessions' => $upcomingSessions,
