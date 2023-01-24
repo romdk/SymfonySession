@@ -60,6 +60,7 @@ class SessionController extends AbstractController
     { 
         if($this->getUser()){
             
+            $today = new \DateTime();
             $session_id = $session->getId();
             $programmes = $session->getProgrammes();
             $autresModules = $mr->findAutresModulesBySessionId($session_id);
@@ -84,7 +85,8 @@ class SessionController extends AbstractController
                 'autresModules' => $autresModules,
                 'stagiairesInscrits' => $stagiairesInscrits,
                 'stagiairesNonInscrits' => $stagiairesNonInscrits,
-                'formAddSession' => $form->createView()
+                'formAddSession' => $form->createView(),
+                'today' => $today
             ]);
         } else {
             return $this->redirectToRoute('app_login');

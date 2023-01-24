@@ -50,19 +50,21 @@
                     {% endfor %}
                 {% endif %}
             </ul>
-            <h3 class="autresModules">Autres modules</h3>
-            <ul>
-                {% for module in autresModules %}
-                <li>
-                    <form action="{{ path('ajouter_programme', {'id':session.id,'moduleId': module.id}) }}" method="post">
-                        <span class="module">{{ module.nomModule }} 
-                            <input name="duree" type="number" placeholder="Jours" min="1"> 
-                            <input name="submitProgramme" type="submit" value="+" class="fa-solid fa-plus">
-                        </span>
-                    </form>
-                </li>
-                {% endfor %}
-            </ul>  
+            {% if today < session.datefin %}
+                <h3 class="autresModules">Autres modules</h3>
+                <ul>
+                    {% for module in autresModules %}
+                    <li>
+                        <form action="{{ path('ajouter_programme', {'id':session.id,'moduleId': module.id}) }}" method="post">
+                            <span class="module">{{ module.nomModule }} 
+                                <input name="duree" type="number" placeholder="Jours" min="1"> 
+                                <input name="submitProgramme" type="submit" value="+" class="fa-solid fa-plus">
+                            </span>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}  
         </div>
         <div class="stagiaires">
             <div class="inscrits">
@@ -80,22 +82,24 @@
                     {% endif %}
                 </ul>
             </div>
-            <div class="nonInscrits">
-                <h3>Stagiaires non inscrits</h3>
-                <div class="searchBar">
-                    <input id="searchBar" onkeyup="affPersonnes()" type="text" placeholder="Rechercher un stagiaire">
+            {% if today < session.datefin %}     
+                <div class="nonInscrits">
+                    <h3>Stagiaires non inscrits</h3>
+                    <div class="searchBar">
+                        <input id="searchBar" onkeyup="affPersonnes()" type="text" placeholder="Rechercher un stagiaire">
+                    </div>
+                    <ul id='results'>
+                        {% for stagiaire in stagiairesNonInscrits %}
+                        <li class='result'>
+                            <a class="stagiaire" href="{{ path('detail_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom ~ ' ' ~ stagiaire.prenom}}</a>
+                            {% if session.nbPlacesTotal > session.stagiaires | length %}
+                                <a href="{{ path('inscrire_stagiaire', {'id':session.id,'stagiaireId': stagiaire.id}) }}"><i class="fa-solid fa-plus"></i></a>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>   
                 </div>
-                <ul id='results'>
-                    {% for stagiaire in stagiairesNonInscrits %}
-                    <li class='result'>
-                        <a class="stagiaire" href="{{ path('detail_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom ~ ' ' ~ stagiaire.prenom}}</a>
-                        {% if session.nbPlacesTotal > session.stagiaires | length %}
-                            <a href="{{ path('inscrire_stagiaire', {'id':session.id,'stagiaireId': stagiaire.id}) }}"><i class="fa-solid fa-plus"></i></a>
-                        {% endif %}
-                    </li>
-                    {% endfor %}
-                </ul>   
-            </div>
+            {% endif %}
         </div>
     </div>
 </main>
