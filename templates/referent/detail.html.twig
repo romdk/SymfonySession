@@ -32,15 +32,15 @@
                     {% for session in sessionsReferent %}
                     <tr>
                         <td> 
-                            {% if today > session.dateDebut and today < session.dateFin %}
-                            <span>En cours</span>
-                            {% elseif today > session.dateFin  %}
-                            <span>Terminée</span>
+                            {% if today > session.dateFin  %}
+                            <span><i class="fa-solid fa-circle termine"></i> Terminée</span>
+                            {% elseif today > session.dateDebut and today < session.dateFin  %}
+                            <span><i class="fa-solid fa-circle enCours"></i> En cours</span>
                             {% elseif today < session.dateDebut and session.stagiaires | length == session.nbPlacesTotal %}
-                            <span>Complet</span>
-                            {% elseif today < session.dateDebut and session.stagiaires | length < session.nbPlacesTotal %}
-                            <span>Disponible</span>  
-                            {% endif %}
+                            <span><i class="fa-solid fa-circle complet"></i> Complet</span>
+                            {% else %}
+                            <span><i class="fa-solid fa-circle disponible"></i> Disponible</span>  
+                            {% endif %}     
                         </td>
                         <td>{{ session.Formation.nomFormation }}</td>
                         <td>{{ session.nomSession }}</td>
@@ -75,6 +75,6 @@
     </div>
 </main>
 {% endblock %}
-{% block javascripts %}
+{# {% block javascripts %}
     <script src="{{ asset('js/referentScript.js') }}"></script>
-{% endblock %}
+{% endblock %} #}
