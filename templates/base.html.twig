@@ -19,12 +19,13 @@
                 </span>
                 <span id="pseudo">{{ app.user.pseudo }}</span>
                 <ul>
-                    <li><a id="btnFormations" class="navLink " href="{{ path('app_formation') }}">Formations</a></li>   
-                    <li><a id="btnSessions" class="navLink" href="{{ path('app_session') }}">Sessions</a></li>   
-                    <li><a id="btnModules" class="navLink" href="{{ path('app_categorie') }}">Modules</a></li>   
-                    <li><a id="btnReferents" class="navLink" href="{{ path('app_referent') }}">Référents</a></li>   
-                    <li><a id="btnStagiaires" class="navLink" href="{{ path('app_stagiaire') }}">Stagiaires</a></li>   
-                    <li><a id="btnDeconnexion" class="navLink" href="{{ path('app_logout') }}">Deconnexion</a></li>
+                    {% set page = app.request.get('_route') %}
+                    <li><a class=" {% if ('formation' in page) %} btnActive{% endif %}" href="{{ path('app_formation') }}">Formations</a></li>   
+                    <li><a class=" {% if ('session' in page) %} btnActive{% endif %}" href="{{ path('app_session') }}">Sessions</a></li>   
+                    <li><a class=" {% if ('categorie' in page) %} btnActive{% endif %}" href="{{ path('app_categorie') }}">Modules</a></li>   
+                    <li><a class=" {% if ('referent' in page) %} btnActive{% endif %}" href="{{ path('app_referent') }}">Référents</a></li>   
+                    <li><a class=" {% if ('stagiaire' in page) %} btnActive{% endif %}" href="{{ path('app_stagiaire') }}">Stagiaires</a></li>   
+                    <li><a id="btnDeconnexion" href="{{ path('app_logout') }}">Deconnexion</a></li>
                 </ul>                
             </nav>
             {% endif %}
