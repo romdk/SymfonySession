@@ -6,7 +6,7 @@
 <main id="stagiairesMain">
     <div class="stagiaires">
         <div class="searchBar">
-            <input id="searchBar" onkeyup="affStagiaires()" type="text" placeholder="Rechercher un stagiaire">
+            <input id="searchBar" onkeyup="affPersonnes()" type="text" placeholder="Rechercher un stagiaire">
         </div>
         <ul id='results'>
             {% for stagiaire in stagiaires %}
@@ -44,7 +44,7 @@
     </div>
     </main>  
 {% endblock %}
-{% block javascripts %}
+{# {% block javascripts %}
     <script src="{{ asset('js/stagiaireScript.js') }}"></script>
-{% endblock %}
+{% endblock %} #}
 

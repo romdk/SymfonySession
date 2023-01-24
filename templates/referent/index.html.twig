@@ -6,7 +6,7 @@
 <main id="referentsMain">
     <div class="referents">
         <div class="searchBar">
-            <input id="searchBar" onkeyup="affReferents()" type="text" placeholder="Rechercher un referent">
+            <input id="searchBar" onkeyup="affPersonnes()" type="text" placeholder="Rechercher un referent">
         </div>
         <ul id='results'>
             {% for referent in referents %}
@@ -35,7 +35,7 @@
     </div>
     </main>  
 {% endblock %}
-{% block javascripts %}
+{# {% block javascripts %}
     <script src="{{ asset('js/referentScript.js') }}"></script>
-{% endblock %}
+{% endblock %} #}
 
