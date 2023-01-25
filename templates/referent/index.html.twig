@@ -4,6 +4,7 @@
 
 {% block body %}
 <main id="referentsMain">
+    <h1>Référents</h1>
     <div class="referents">
         <div class="searchBar">
             <input id="searchBar" onkeyup="affPersonnes()" type="text" placeholder="Rechercher un referent">
@@ -18,20 +19,20 @@
         <div id="divBtn">
             <button id="btnAjout">Ajouter un referent</button>
         </div>
-        <div id="overlay">
-            <div class="form">
-                {{ form_start(formAddReferent) }}
-                <div class="formRow">
-                    {{ form_row(formAddReferent.nom) }}
-                    {{ form_row(formAddReferent.prenom) }}
-                </div>
-                <div class="btnAjouter">
-                    {{ form_row(formAddReferent.ajouter) }}
-                </div>
-                {{ form_end(formAddReferent) }}
-                <i id="btnFermer" class="fa-solid fa-xmark"></i>
-            </div>    
-        </div>
+    </div>
+    <div id="overlay">
+        <div class="form">
+            {{ form_start(formAddReferent) }}
+            <div class="formRow">
+                {{ form_row(formAddReferent.nom) }}
+                {{ form_row(formAddReferent.prenom) }}
+            </div>
+            <div class="btnAjouter">
+                {{ form_row(formAddReferent.ajouter) }}
+            </div>
+            {{ form_end(formAddReferent) }}
+            <i id="btnFermer" class="fa-solid fa-xmark"></i>
+        </div>    
     </div>
     </main>  
 {% endblock %}

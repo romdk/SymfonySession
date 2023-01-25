@@ -8,36 +8,40 @@
 
     <div class="selecteur">
         {# {{ today }} <br> #}
-        <span id="currentBtn" class="btnActive">Sessions en cours</span>
-        <span id="upcomingBtn">Sessions à venir</span>
-        <span id="pastBtn">Sessions passées</span>
+        <span id="currentBtn" class="btnActive">En cours</span>
+        <span id="upcomingBtn">À venir</span>
+        <span id="pastBtn">Terminé</span>
     </div>
     <div class="tables">
         <table id="currentSessions">
-            <tr>
-                <th>Statut</th>
-                <th>Formation</th>
-                <th>Session</th>
-                <th>Référent</th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Inscrits</th>
-                <th>Actions</th>
-            </tr>
-            {% for session in currentSessions %}
-            <tr>
-                <td> 
-                    <span><i class="fa-solid fa-circle enCours"></i> En cours</span>
-                </td>
-                <td>{{ session.Formation.nomFormation }}</td>
-                <td>{{ session.nomSession }}</td>
-                <td>{{ session.Referent.prenom }} {{ session.Referent.nom }}</td>
-                <td>{{ session.dateDebut | date('d/m/Y') }}</td>
-                <td>{{ session.dateFin | date('d/m/Y')  }}</td>
-                <td>{{ session.stagiaires | length }}/{{ session.nbPlacesTotal }}</td>
-                <td class="actions"><a href="{{ path('detail_session', {'id': session.id}) }}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
-            </tr>                
-            {% endfor %}
+            <thead>
+                <tr>
+                    <th>Statut</th>
+                    <th>Formation</th>
+                    <th>Session</th>
+                    <th>Référent</th>
+                    <th>Date de début</th>
+                    <th>Date de fin</th>
+                    <th>Inscrits</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in currentSessions %}
+                <tr>
+                    <td> 
+                        <span><i class="fa-solid fa-circle enCours"></i> En cours</span>
+                    </td>
+                    <td>{{ session.Formation.nomFormation }}</td>
+                    <td>{{ session.nomSession }}</td>
+                    <td>{{ session.Referent.prenom }} {{ session.Referent.nom }}</td>
+                    <td>{{ session.dateDebut | date('d/m/Y') }}</td>
+                    <td>{{ session.dateFin | date('d/m/Y')  }}</td>
+                    <td>{{ session.stagiaires | length }}/{{ session.nbPlacesTotal }}</td>
+                    <td class="actions"><a href="{{ path('detail_session', {'id': session.id}) }}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                </tr>                
+                {% endfor %}
+            </tbody>
         </table>           
         <table id="upcomingSessions">
             <tr>

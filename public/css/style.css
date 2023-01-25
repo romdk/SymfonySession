@@ -9,6 +9,7 @@
     overflow-x: hidden;
 }
 
+
 /* ----------------------------------LOGIN-------------------------------- */
 
 #loginMain{
@@ -117,8 +118,8 @@
 /* -------------------------------------------NAV-------------------------------- */
 nav{
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
     height: 100vh;
     width: 200px;
     background-image: linear-gradient(
@@ -266,6 +267,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 300px;
     height: 100px;
     background-color: #2A3436;
@@ -1009,6 +1011,174 @@ body{
     top: -10px;
     right: 10px;
     width: fit-content;
+}
+
+/* ----------------------------------------------RESPONSIVE-------------------------------------------- */
+@media screen and (max-width: 426px){
+    nav{
+        left: -200px;
+    }
+
+    #editMain, #formationMain, #sessionMain, #detailSessionMain, #categorieMain, #detailCategorieMain, #detailMain, #referentsMain, #stagiairesMain{
+        width: 100%;
+    }
+
+    #overlay{
+        width: 100vw;
+        height: 100vh;
+    }    
+
+    #overlay .form{  
+        margin: 5px;
+    }
+
+    h1{
+        font-size: 1rem;
+    }
+
+    /* ----------------------------------FORMATIONS-------------------------- */
+    .formations{
+        width: 100%;
+        margin-top: 0px;
+        padding: 0;
+    }
+
+    .formations .card{
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    /* -------------------------------DETAILS FORMATION----------------------- */
+    #detailMain{
+        justify-content: flex-start;
+    }
+
+    /* ----------------------------------SESSIONS---------------------------- */
+    .selecteur{
+        min-height: 34px;
+    }
+
+    .selecteur span {
+        min-height: 34px;
+    }
+
+    .tables{
+        max-width: 425px;
+        max-height: 700px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+
+    .tables table{
+        border-radius: 0px;
+    }
+
+    .tables thead, tr{
+        display: table;
+        width: 1200px;
+        table-layout: fixed;
+    }
+
+    .tables tbody{
+        max-height: 650px;
+        width: 1200px;
+        overflow-y: scroll;
+        display: block;
+        text-align: center;
+    }
+
+    .tables td{
+        width: 150px;
+    }
+
+    .actions{
+        height: 92px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #btnAjout{
+        margin-bottom: 15px;
+    }
+
+    /* -------------------------------DETAILS SESSION------------------------------ */
+    .infos{
+        width: 100%;
+    }
+
+    /* -------------------------------CATEGORIES------------------------------------ */
+    .categories{
+        height: 100%;
+        width: 100%;
+        margin-top: 0px;
+    }
+
+    /* --------------------------------REFERENTS------------------------------------ */
+    #referentsMain{
+        align-items: flex-start;
+        height: fit-content;
+        padding-top: 5px;
+    }
+
+    .referents{
+        width: 95%;
+        margin-top: 20px;
+    }
+
+    /* ------------------------------DETAILS REFERENT-------------------------------- */
+    .ficheReferent{
+        padding: 0;
+        padding-top: 20px;
+        width: 100%;
+        height: 100%;
+        justify-content: start;
+    }
+
+    .infosReferent{
+        margin: 0 15px;
+        margin-bottom: 20px;
+    }
+    
+    .sessionsReferent{
+        height: fit-content;
+        width: 100%;
+        justify-content: start;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        align-items: start;
+    }
+
+    h2{
+        width: 100%;
+        text-align: center;
+    }
+
+    .sessionsReferent table{
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .sessionsReferent thead, tr{
+        display: table;
+        width: 1200px;
+        table-layout: fixed;
+    }
+
+    .sessionsReferent tbody{
+        max-height: 600px;
+        width: 1200px;
+        overflow-y: scroll;
+        display: block;
+        text-align: center;
+    }
+
+    .sessionsReferent td{
+        width: 150px;
+    }
 }
 
 

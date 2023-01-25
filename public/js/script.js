@@ -53,7 +53,8 @@ currentBtn.addEventListener('click', () => {
     currentBtn.classList.add('btnActive')
     upcomingBtn.classList.remove('btnActive')
     pastBtn.classList.remove('btnActive')  
-    currentSessions.style.display = 'block'  
+    currentSessions.style.display = 'block'
+    currentSessions.style.overflowX = 'scroll' 
     upcomingSessions.style.display = 'none'  
     pastSessions.style.display = 'none'  
 })
@@ -63,7 +64,8 @@ upcomingBtn.addEventListener('click', () => {
     upcomingBtn.classList.add('btnActive')
     pastBtn.classList.remove('btnActive')
     currentSessions.style.display = 'none'  
-    upcomingSessions.style.display = 'block'  
+    upcomingSessions.style.display = 'block'
+    upcomingSessions.style.overflowX = 'scroll' 
     pastSessions.style.display = 'none'   
 })
 
@@ -73,5 +75,6 @@ pastBtn.addEventListener('click', () => {
     pastBtn.classList.add('btnActive')
     currentSessions.style.display = 'none'  
     upcomingSessions.style.display = 'none'  
-    pastSessions.style.display = 'block'     
+    pastSessions.style.display = 'block'
+    pastSessions.style.overflowX = 'scroll'    
 })
