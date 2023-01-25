@@ -1,3 +1,39 @@
+// -------------------------------------------------------MENU BURGER-------------------------------------------
+const btnBurger = document.getElementById('btnBurger');
+const nav = document.getElementById('nav');
+const span1 = document.getElementById('burgerSpan1');
+const span2 = document.getElementById('burgerSpan2');
+const span3 = document.getElementById('burgerSpan3');
+let btn = 'null';
+
+btnBurger.addEventListener('click',() => {
+    console.log(btn);
+    if (btn !== 'active') {
+        btn = 'active'
+        nav.style.transform = "translateX(200px)";
+        btnBurger.style.transform = "translateX(5px)";
+        span1.style.backgroundColor = "white";
+        span1.style.width = "20px";
+        span1.style.transform = "rotate(45deg) translateY(10px)"
+        span2.style.transform = "scaleX(0)"
+        span3.style.backgroundColor = "white";
+        span3.style.width = "20px";
+        span3.style.transform = "rotate(-45deg) translateY(-10px)"
+    }else {
+        btn = 'null'
+        nav.style.transform = "translateX(0px)";
+        btnBurger.style.transform = "translateX(0px)";
+        span1.style.backgroundColor = "#1c1c1c";
+        span1.style.width = "30px";
+        span1.style.transform = "rotate(0deg) translateY(0px)"
+        span2.style.backgroundColor = "#1c1c1c";
+        span2.style.transform = "scaleX(1)";
+        span3.style.backgroundColor = "#1c1c1c";
+        span3.style.width = "30px";
+        span3.style.transform = "rotate(0deg) translateY(0px)"
+    }
+});
+
 // -------------------------------------------------------AFFICHER FORMULAIRE------------------------------------
 const btnAjout = document.getElementById('btnAjout');
 const overlay = document.getElementById('overlay');

@@ -6,26 +6,6 @@
 <main id="detailSessionMain">
     <div class="infos">
         <h2>{{ session.nomSession }}</h2>
-        <div id="overlay">
-            <div class="form">
-                {{ form_start(formAddSession) }}
-                <div class="formRow">
-                    {{ form_row(formAddSession.nomSession) }}
-                    {{ form_row(formAddSession.referent) }}
-                    {{ form_row(formAddSession.formation) }}
-                </div>
-                <div class="formRow">
-                    {{ form_row(formAddSession.nbPlacesTotal) }}
-                    {{ form_row(formAddSession.dateDebut) }}
-                    {{ form_row(formAddSession.dateFin) }}
-                </div>
-                <div class="btnAjouter">
-                    {{ form_row(formAddSession.ajouter) }}
-                </div>
-                {{ form_end(formAddSession) }}
-                <i id="btnFermer" class="fa-solid fa-xmark"></i>
-            </div>    
-        </div>       
         <div class="session">
             <div id="divBtn">
                 <i id="btnAjout" class="fa-solid fa-pen-to-square"></i>
@@ -102,6 +82,26 @@
             {% endif %}
         </div>
     </div>
+    <div id="overlay">
+        <div class="form">
+            {{ form_start(formAddSession) }}
+            <div class="formRow">
+                {{ form_row(formAddSession.nomSession) }}
+                {{ form_row(formAddSession.referent) }}
+                {{ form_row(formAddSession.formation) }}
+            </div>
+            <div class="formRow">
+                {{ form_row(formAddSession.nbPlacesTotal) }}
+                {{ form_row(formAddSession.dateDebut) }}
+                {{ form_row(formAddSession.dateFin) }}
+            </div>
+            <div class="btnAjouter">
+                {{ form_row(formAddSession.ajouter) }}
+            </div>
+            {{ form_end(formAddSession) }}
+            <i id="btnFermer" class="fa-solid fa-xmark"></i>
+        </div>    
+    </div>       
 </main>
 {% endblock %}
 {# {% block javascripts %}

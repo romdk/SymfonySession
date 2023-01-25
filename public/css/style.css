@@ -6,7 +6,25 @@
     margin: 0;
     font-family: 'Prompt', sans-serif;
     text-decoration: none;
-    overflow-x: hidden;
+}
+
+#btnBurger{
+    position: fixed;
+    flex-direction: column;
+    gap: 5px;
+    top: 10px;
+    left: 10px;
+    z-index: 9999;
+    display: flex;
+    flex-wrap: wrap;
+    transition: .3s;
+}
+
+#btnBurger span{
+    width: 30px;
+    height: 2px;
+    background-color: #1c1c1c;
+    transition: .3s;
 }
 
 
@@ -451,11 +469,14 @@ body{
 #detailSessionMain ul {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
     overflow: visible;
+}
+
+#detailSessionMain #results{
+    gap: 10px;
 }
 
 #detailSessionMain{
@@ -530,7 +551,7 @@ body{
 }
 
 .module {
-    margin: 5px;
+    margin: 5px 5px 5px 10px;
     padding:  0 15px 0 10px;
     border-radius: 20px;
     color: #f1f1f1;
@@ -574,6 +595,7 @@ body{
 #detailSessionMain .nonInscrits{
     width: 100%;
     margin-top: 30px;
+    overflow-x: visible;
 }
 
 #detailSessionMain .session #divBtn{
@@ -1017,6 +1039,7 @@ body{
 @media screen and (max-width: 426px){
     nav{
         left: -200px;
+        transition: .3s;
     }
 
     #editMain, #formationMain, #sessionMain, #detailSessionMain, #categorieMain, #detailCategorieMain, #detailMain, #referentsMain, #stagiairesMain{
@@ -1108,6 +1131,26 @@ body{
     /* -------------------------------DETAILS SESSION------------------------------ */
     .infos{
         width: 100%;
+    }
+
+    .infos .modules{
+        padding: 10px;
+    }
+
+    .modules ul{
+        max-height: 100px;
+        overflow-y: scroll;
+    }
+
+    #detailSessionMain #results{
+        max-height: 100px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    #detailSessionMain ul {
+        overflow-y: scroll;
+        overflow-x:hidden;
     }
 
     /* -------------------------------CATEGORIES------------------------------------ */

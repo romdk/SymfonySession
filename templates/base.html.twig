@@ -12,7 +12,12 @@
 
     </head>
     {% if app.user %}
-            <nav>
+    <div id="btnBurger">
+        <span id="burgerSpan1"></span>
+        <span id="burgerSpan2"></span>
+        <span id="burgerSpan3"></span>
+    </div>
+            <nav id="nav">
                 <span id="imageProfil">
                     <img src="{{ asset('uploads/user/' ~ app.user.image ) }}" alt="">
                     <a href="{{ path('edit_user', {'id': app.user.id}) }}" class="editProfil"><i class="fa-solid fa-pen-to-square"></i></a>
