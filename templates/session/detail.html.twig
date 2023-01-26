@@ -24,7 +24,7 @@
                 {% else %}                    
                     {% for programme in programmes %}
                     <li>
-                        <span class="module" >{{ programme.module.categorie.nomCategorie ~ ': ' ~ programme.module.nomModule ~ ' (' ~ programme.duree ~ ' Jours)'}}</span>
+                        <span class="module" >{{ programme.module.nomModule ~ ' (' ~ programme.duree ~ ' Jours)'}}</span>
                         <a href="{{ path('retirer_programme', {'id':session.id,'programmeId': programme.id}) }}"><i class="fa-solid fa-xmark"></i></a>
                     </li>
                     {% endfor %}

@@ -4,11 +4,12 @@
 
 {% block body %}
 <main id="formationMain">
-<div class="formations">
     <h2>Formations</h2>
+<div class="formations">
     {% for formation in formations %}
         <a class="card" href="{{ path('detail_formation', {'id': formation.id}) }}">{{ formation.nomFormation}}</a>
     {% endfor %}
+</div>
     <div id="divBtn">
         <button id="btnAjout">Ajouter une formation</button>
     </div>
@@ -25,7 +26,6 @@
             <i id="btnFermer" class="fa-solid fa-xmark"></i>
         </div>    
     </div>
-</div>
 </main>   
 {% endblock %}
 {# {% block javascripts %}
