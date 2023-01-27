@@ -4,7 +4,7 @@
 
 {% block body %}
 <main id="formationMain">
-    <h2>Formations</h2>
+    <h1>Formations</h1>
 <div class="formations">
     {% for formation in formations %}
         <a class="card" href="{{ path('detail_formation', {'id': formation.id}) }}">{{ formation.nomFormation}}</a>

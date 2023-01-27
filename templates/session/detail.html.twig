@@ -5,7 +5,7 @@
 {% block body %}
 <main id="detailSessionMain">
     <div class="infos">
-        <h2>{{ session.nomSession }}</h2>
+        <h1>{{ session.nomSession }}</h1>
         <div class="session">
             <div id="divBtn">
                 <i id="btnAjout" class="fa-solid fa-pen-to-square"></i>
@@ -17,7 +17,7 @@
             <span>Nombre de disponibles: {{ session.nbPlacesTotal - session.stagiaires | length }}</span>
         </div>
         <div class="modules">
-            <h3>Programme</h3>
+            <h2>Programme</h2>
             <ul>
                 {% if programmes | length == 0 %}
                     <span>Aucun programme</span>
@@ -31,7 +31,7 @@
                 {% endif %}
             </ul>
             {% if today < session.datefin %}
-                <h3 class="autresModules">Autres modules</h3>
+                <h2 class="autresModules">Autres modules</h2>
                 <ul>
                     {% for module in autresModules %}
                     <li>
@@ -48,7 +48,7 @@
         </div>
         <div class="stagiaires">
             <div class="inscrits">
-                <h3>Stagiaires inscrits</h3>
+                <h2>Stagiaires inscrits</h2>
                 <ul>
                     {% if stagiairesInscrits | length == 0 %}
                         <span>Aucun stagiaire</span>
@@ -64,7 +64,7 @@
             </div>
             {% if today < session.datefin %}     
                 <div class="nonInscrits">
-                    <h3>Stagiaires non inscrits</h3>
+                    <h2>Stagiaires non inscrits</h2>
                     <div class="searchBar">
                         <input id="searchBar" onkeyup="affPersonnes()" type="text" placeholder="Rechercher un stagiaire">
                     </div>

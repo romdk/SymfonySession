@@ -5,7 +5,7 @@
 {% block body %}
 <main id="categorieMain">
 <div class="categories">
-    <h2>Catégories</h2>
+    <h1>Catégories</h1>
     {% for categorie in categories %}
         <a class="card" href="{{ path('detail_categorie', {'id': categorie.id}) }}">{{ categorie.nomCategorie}}</a>
     {% endfor %}
