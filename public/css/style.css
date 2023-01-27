@@ -8,6 +8,49 @@
     text-decoration: none;
 }
 
+:root{
+    --clr-background1: #cccccc;
+    --clr-background2: #f1f1f1;
+    --clr-background3: #e5e5e5;
+    --clr-background4: #1c1c1c;
+
+    --clr-text1: #f1f1f1;
+    --clr-text2: #1c1c1c;
+    --clr-text3: #8c8c8c;
+
+    --clr-btn1: #008cff;
+    --clr-btn1Hover: #005ba5;
+    --clr-btn2: #17b75f;
+    --clr-btn2Hover: #007b38;
+    --clr-btn3: #b71717;
+    --clr-btn3Hover: #7d0606;
+
+    --clr-nav: linear-gradient(
+        45deg,
+        hsl(200deg 37% 8%) 0%,
+        hsl(194deg 25% 13%) 50%,
+        hsl(189deg 15% 18%) 100%
+    );
+
+    --clr-thead: #2A3436;
+    --clr-trow1: #efefef;
+    --clr-trow2: #e2e2e2;
+}
+
+h1{
+    font-weight: 500;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+}
+
+h2{
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
 #btnBurger{
     display: none;
     position: fixed;
@@ -23,7 +66,7 @@
 #btnBurger span{
     width: 30px;
     height: 2px;
-    background-color: #1c1c1c;
+    background-color: var(--clr-background4);
     transition: .3s;
 }
 
@@ -45,7 +88,7 @@
 }
 
 .login{
-    background-color:#F1F1F1;
+    background-color:var(--clr-background2);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,13 +99,11 @@
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
 }
 
-.login h1{
-    font-weight: 300;
-}
+
 
 .email{
     width: 90%;
-    background-color: #e2e2e2;
+    background-color: var(--clr-background3);
     border-radius: 5px;
     border: none;
     outline: none;
@@ -72,7 +113,7 @@
 
 .password{
     width: 90%;
-    background-color: #e2e2e2;
+    background-color: var(--clr-background3);
     border-radius: 5px;
     border: none;   
     outline: none;
@@ -82,19 +123,19 @@
 
 .btnConnexion{
     width: 100px;
-    background-color: #0085FF;
+    background-color: var(--clr-btn1);
     border-radius: 5px;
     height: 30px;
     border: none;
     outline: none;
     margin-top: 20px;
-    color: #F1F1F1;
+    color: var(--clr-text1);
     transition: .3s;
 }
 
 .btnConnexion:hover{
     cursor: pointer;
-    background-color: #0a74d8;
+    background-color: var(--clr-btn1Hover);
 }
 
 /* ----------------------------------------EDIT USER----------------------------- */
@@ -108,7 +149,7 @@
 }
 
 #editMain .form{
-    background-color: #dddddd;
+    background-color: var(--clr-background2);
     padding: 20px;
     border-radius: 5px;
     display: flex;
@@ -120,11 +161,6 @@
     flex-wrap: wrap;
     gap: 10px;
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
-}
-
-#editMain .form h2{
-    width: 100%;
-    text-align: center;
 }
 
 #editMain .form .btnAjouter{
@@ -187,12 +223,12 @@ nav #imageProfil:hover .editProfil {
 }
 
 nav #imageProfil .editProfil .fa-pen-to-square {
-    color: #f1f1f1;
+    color: var(--clr-text1);
     font-size: 1.5rem;
 }
 
 nav #pseudo{
-    color: #F1F1F1;
+    color: var(--clr-text1);
     font-size: 1.5rem;
 }
 
@@ -212,8 +248,7 @@ nav li a{
     height: 30px;
     padding: 0 20px;
     border-radius: 5px;
-    color: #8c8c8c;
-    background-color: #0084ff00;
+    color: var(--clr-text3);
     text-transform: uppercase;
     line-height: 30px;
     text-align: center;
@@ -222,7 +257,7 @@ nav li a{
 }
 
 nav li a:hover{
-    color: #F1F1F1;
+    color: var(--clr-text1);
 }
 
 nav #btnDeconnexion{
@@ -232,13 +267,13 @@ nav #btnDeconnexion{
     height: 30px;
     padding: 0 20px;
     border-radius: 5px;
-    color: #F1F1F1;
-    background-color: #892E2E;
+    color: var(--clr-text1);
+    background-color: var(--clr-btn3);
     text-transform: uppercase;
 }
 
 nav #btnDeconnexion:hover{
-    background-color: #5f2121;
+    background-color: var(--clr-btn3Hover);
 }
 
 
@@ -246,7 +281,7 @@ body{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: #cccccc;
+    background-color: var(--clr-background1);
 }
 
 
@@ -262,7 +297,7 @@ body{
 }
 
 .formations{
-    background-color: #dddddd;
+    background-color: var(--clr-background3);
     padding: 20px;
     border-radius: 5px;
     display: flex;
@@ -277,8 +312,6 @@ body{
 }
 
 .formations h2{
-    width: 100%;
-    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -289,8 +322,8 @@ body{
     text-align: center;
     width: 300px;
     height: 100px;
-    background-color: #2A3436;
-    color: #F1F1F1;
+    background-color: var(--clr-thead);
+    color: var(--clr-text1);
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
 }
 
@@ -318,15 +351,13 @@ body{
 
 #sessionMain h1{
     margin-top: 20px;
-    text-transform: uppercase;
-    font-weight: 400;
 }
 
 .selecteur{
     height: fit-content;
     margin-top: 20px;
     padding: 5px 0;
-    background-color: #e2e2e2;
+    background-color: var(--clr-background3);
     border-radius: 5px;
 }
 
@@ -338,30 +369,26 @@ body{
 
 .selecteur span:hover:not(.btnActive){
     cursor: pointer;
-    background-color:#cbcbcb;
+    background-color:#d6d6d6;
 }
 
 .btnActive{
-    background-color: #0085FF;
-    color: #F1F1F1;
+    background-color: var(--clr-btn1);
+    color: var(--clr-text1);
 }
 
 .tables{
     margin-top: 20px;
     }
     
-    #currentSessions{
-        background-color: rgb(166, 96, 96);
-    }
+
     
     #upcomingSessions{
         display: none;
-        background-color: rgb(122, 165, 122);
     }
     
     #pastSessions{
         display: none;
-        background-color: rgb(133, 133, 172);
     }
     
     table{
@@ -372,8 +399,8 @@ body{
     
     th {
         padding: 10px;
-        background-color: #2A3436;
-        color: #F1F1F1;
+        background-color: var(--clr-thead);
+        color: var(--clr-text1);
         font-weight: 400;
     }
     
@@ -382,11 +409,11 @@ body{
     }
     
     tr:nth-child(even){
-        background-color: #efefef;
+        background-color: var(--clr-trow1);
     }
     
     tr:nth-child(odd){
-        background-color: #e2e2e2;
+        background-color: var(--clr-trow2);
     }
 
     .actions{
@@ -443,15 +470,15 @@ body{
     position: absolute;
     top: 0px;
     right: -10px;
-    color: #f1f1f1;
-    background-color: green;
+    color: var(--clr-text1);
+    background-color: var(--clr-btn2);
     padding:  4px 6px;
     border-radius: 0 20px 20px 0;
     height: 25px;
 }
 
 #detailSessionMain .fa-plus:hover{
-    background-color: rgb(3, 83, 3);
+    background-color: var(--clr-btn2Hover);
 }
 
 .modules .fa-xmark, #detailSessionMain .stagiaires .fa-xmark {
@@ -459,18 +486,14 @@ body{
     top: 0;
     right: -10px;
     height: 25px;
-    color: #f1f1f1;
-    background-color: #892E2E;
+    color: var(--clr-text1);
+    background-color: var(--clr-btn3);
     padding:  4px 8px;
     border-radius: 0 20px 20px 0;
 }
 
 #detailSessionMain .modules .fa-xmark:hover{
-    background-color: #5f2121;
-}
-#detailSessionMain h3{
-    width: 100%;
-    text-align: center;
+    background-color: var(--clr-btn3Hover);
 }
 
 #detailSessionMain ul {
@@ -509,15 +532,10 @@ body{
     align-items: center;
     flex-wrap: wrap;
     width: 60%;
-    background-color: #f1f1f1;
+    background-color: var(--clr-background2);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
-}
-
-.infos h2{
-    width: 100%;
-    text-align: center;
 }
 
 .infos .session{
@@ -526,7 +544,7 @@ body{
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #dddddd;
+    background-color: var(--clr-background3);
     padding: 20px;
     border-radius: 5px;
 }
@@ -536,13 +554,10 @@ body{
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #dddddd;
+    background-color: var(--clr-background3);
     padding: 20px;
+    padding-top: 5px;
     border-radius: 5px;
-}
-
-.modules h3{
-    width: 100%;
 }
 
 #detailSessionMain .modules .fa-plus{
@@ -558,8 +573,8 @@ body{
     margin: 5px 5px 5px 10px;
     padding:  0 15px 0 10px;
     border-radius: 20px;
-    color: #f1f1f1;
-    background-color: rgb(26, 49, 63); 
+    color: var(--clr-text1);
+    background-color: var(--clr-thead); 
     transition: .3s;
     overflow: hidden;
     display: flex;
@@ -571,8 +586,8 @@ body{
 .module input{
     outline: none;
     border: none;
-    background-color: #cbcbcb;
-    color: #1c1c1c;
+    background-color: var(--clr-background2);
+    color: var(--clr-text2);
     width: 60px;
     height: 25px;
     padding: 0 5px;
@@ -588,8 +603,9 @@ body{
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #dddddd;
+    background-color: var(--clr-background3);
     padding: 20px;
+    padding-top: 5px;
     border-radius: 5px;
 }
 
@@ -601,6 +617,15 @@ body{
     width: 100%;
     margin-top: 30px;
     overflow-x: visible;
+}
+
+.stagiaires .nonInscrits #searchBar {
+    outline: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 300px;
+    border: none;
+    background-color: var(--clr-background2);
 }
 
 #detailSessionMain .session #divBtn{
@@ -620,7 +645,7 @@ body{
 }
 
 .categories{
-    background-color: #dddddd;
+    background-color: var(--clr-background3);
     padding: 20px;
     border-radius: 5px;
     display: flex;
@@ -635,8 +660,6 @@ body{
 }
 
 .categories h2{
-    width: 100%;
-    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -646,8 +669,8 @@ body{
     align-items: center;
     width: 300px;
     height: 100px;
-    background-color: #2A3436;
-    color: #F1F1F1;
+    background-color: var(--clr-thead);
+    color: var(--clr-text1);
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
 }
 
@@ -677,7 +700,7 @@ body{
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    background-color: #dddddd;
+    background-color: var(--clr-background3);
     padding: 20px;
     border-radius: 5px;
 }
@@ -704,8 +727,8 @@ body{
 #detailCategorieMain .modules .fa-xmark{
     position: absolute;
     right: -10px;
-    color: #f1f1f1;
-    background-color: #892E2E;
+    color: var(--clr-text1);
+    background-color: var(--clr-btn3);
     padding:  4px 8px;
     border-radius: 0 20px 20px 0;
 }
@@ -727,28 +750,17 @@ body{
 
 #detailMain h1{
     margin-top: 20px;
-    text-transform: uppercase;
-    font-weight: 400;
-}
-
-#detailMain h3{
-    width: 100%;
-    text-align: center;
 }
 
 /* ------------------------------REFERENTS---------------------------- */
 #referentsMain{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     height: 100vh;
     width: 88vw;
-}
-
-#referentsMain h1{
-    width: 100%;
-    text-align: center;
 }
 
 #referentsMain ul {
@@ -765,7 +777,7 @@ body{
     align-items: center;
     flex-wrap: wrap;
     width: 60%;
-    background-color: #f1f1f1;
+    background-color: var(--clr-background2);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
@@ -780,13 +792,22 @@ body{
     margin: 5px;
     padding:  0 15px 0 10px;
     border-radius: 20px;
-    color: #f1f1f1;
-    background-color: rgb(26, 49, 63); 
+    color: var(--clr-text1);
+    background-color: var(--clr-thead); 
     transition: .3s;
 }
 
 .referent:hover {
-    background-color: #0a74d8;     
+    background-color: var(--clr-btn1);     
+}
+
+.referents #searchBar {
+    outline: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 300px;
+    border: none;
+    background-color: var(--clr-background3);
 }
 /* ------------------------------DETAILS REFERENTS---------------------------- */
 .ficheReferent{
@@ -795,7 +816,7 @@ body{
     align-items: center;
     flex-direction: column;
     width: 80%;
-    background-color: #f1f1f1;
+    background-color: var(--clr-background2);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
@@ -807,7 +828,7 @@ body{
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #dddddd;
+    background-color: var(--clr-background3);
     padding: 20px;
     border-radius: 5px;
 }
@@ -824,13 +845,13 @@ body{
     margin-top: 30px;
     padding: 10px;
     border-radius: 5px;
-    color: #F1F1F1;
-    background-color: #892E2E;
+    color: var(--clr-text1);
+    background-color: var(--clr-btn3);
     text-transform: uppercase;
     transition: .2s;
 }
 .btnSupprimerReferent:hover{    
-    background-color: #5f2121;
+    background-color: var(--clr-btn3Hover);
 }
 
 #detailMain .infosReferent #divBtn{
@@ -839,20 +860,41 @@ body{
     right: 10px;
     width: fit-content;
 }
+
+.sessionsReferent table{
+    width: 100%;
+}
+
+.sessionsReferent thead, .sessionsReferent tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.sessionsReferent tbody{
+    max-height: 500px;
+    width: 100%;
+    overflow-y: scroll;
+    display: block;
+    text-align: center;
+}
+
+.sessionsReferent .actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 92px;
+}
 /* ------------------------------STAGIAIRES---------------------------- */
 
 #stagiairesMain{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     flex-wrap: wrap;
     height: 100vh;
     width: 88vw;
-}
-
-#stagiairesMain h1{
-    width: 100%;
-    text-align: center;
 }
 
 .stagiaires{
@@ -861,7 +903,7 @@ body{
     align-items: center;
     flex-wrap: wrap;
     width: 60%;
-    background-color: #f1f1f1;
+    background-color: var(--clr-background2);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
@@ -876,13 +918,13 @@ body{
     margin: 5px;
     padding:  0 15px 0 10px;
     border-radius: 20px;
-    color: #f1f1f1;
-    background-color: rgb(26, 49, 63); 
+    color: var(--clr-text1);
+    background-color: var(--clr-thead); 
     transition: .3s;
 }
 
 .stagiaire:hover {
-    background-color: #0a74d8;     
+    background-color: var(--clr-btn1);     
 }
 
 .searchBar {
@@ -891,13 +933,13 @@ body{
     justify-content: center;
 }
 
-#searchBar {
+.stagiaires #searchBar {
     outline: none;
     border-radius: 5px;
     padding: 5px 10px;
-    width: 30   0px;
+    width: 300px;
     border: none;
-    background-color: #e2e2e2;
+    background-color: var(--clr-background3);
 }
 
 #stagiairesMain ul {
@@ -925,18 +967,18 @@ body{
 
 #btnAjout {
     margin-top: 20px;
-    background-color: rgb(14, 174, 14);
+    background-color: var(--clr-btn2);
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
-    color: #f1f1f1;
+    color: var(--clr-text1);
     text-transform: uppercase;
     font-weight: 400;
     transition: .3s;
 }
 
 #btnAjout:hover {
-    background-color: green;
+    background-color: var(--clr-btn2Hover);
     cursor: pointer;
 }
 
@@ -958,7 +1000,7 @@ body{
     flex-direction: row;
     flex-wrap: wrap;
     width: 800px;
-    background-color: #f1f1f1;
+    background-color: var(--clr-background2);
     padding: 20px;
     border-radius: 5px;
 }
@@ -998,7 +1040,7 @@ body{
     align-items: center;
     flex-direction: column;
     width: 80%;
-    background-color: #f1f1f1;
+    background-color: var(--clr-background2);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
@@ -1010,7 +1052,7 @@ body{
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #dddddd;
+    background-color: var(--clr-background3);
     padding: 20px;
     border-radius: 5px;
 }
@@ -1038,14 +1080,14 @@ body{
     margin-top: 30px;
     padding: 10px;
     border-radius: 5px;
-    color: #F1F1F1;
-    background-color: #892E2E;
+    color: var(--clr-text1);
+    background-color: var(--clr-btn3);
     text-transform: uppercase;
     transition: .2s;
 }
 .btnSupprimerStagiaire:hover{
     
-    background-color: #5f2121;
+    background-color: var(--clr-btn3Hover);
 }
 
 .hidden {
@@ -1057,6 +1099,31 @@ body{
     top: -10px;
     right: 10px;
     width: fit-content;
+}
+
+.sessionsStagiaire table{
+    width: 100%;
+}
+
+.sessionsStagiaire thead, .sessionsStagiaire tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.sessionsStagiaire tbody{
+    max-height: 400px;
+    width: 100%;
+    overflow-y: scroll;
+    display: block;
+    text-align: center;
+}
+
+.sessionsStagiaire .actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 92px;
 }
 
 /* ----------------------------------------------RESPONSIVE-------------------------------------------- */
@@ -1211,7 +1278,6 @@ body{
 
     /* --------------------------------REFERENTS------------------------------------ */
     #referentsMain{
-        align-items: flex-start;
         height: fit-content;
     }
 
@@ -1248,28 +1314,17 @@ body{
         align-items: start;
     }
 
-    h2{
-        width: 100%;
-        text-align: center;
-    }
-
     .sessionsReferent table{
-        width: 100%;
         border-radius: 0;
     }
 
     .sessionsReferent thead, .sessionsReferent tr{
-        display: table;
         width: 1200px;
-        table-layout: fixed;
     }
 
     .sessionsReferent tbody{
         max-height: 600px;
         width: 1200px;
-        overflow-y: scroll;
-        display: block;
-        text-align: center;
     }
 
     .sessionsReferent td{
@@ -1278,7 +1333,6 @@ body{
 
     /* -----------------------------------------STAGIAIRES---------------------------------------- */
     #stagiairesMain{
-        align-items: flex-start;
         height: fit-content;
     }
 
@@ -1307,22 +1361,16 @@ body{
     }
 
     .sessionsStagiaire table{
-        width: 100%;
         border-radius: 0;
     }
 
     .sessionsStagiaire thead, .sessionsStagiaire tr{
-        display: table;
         width: 1200px;
-        table-layout: fixed;
     }
 
     .sessionsStagiaire tbody{
         max-height: 500px;
         width: 1200px;
-        overflow-y: scroll;
-        display: block;
-        text-align: center;
     }
 
     .sessionsStagiaire td{
@@ -1330,7 +1378,7 @@ body{
     }
 
     @media screen and (max-width: 375px){
-        h1{
+        .h1Formation{
             font-size: .8rem;
         }
     }
