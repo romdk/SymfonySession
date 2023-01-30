@@ -38,11 +38,40 @@ btnBurger.addEventListener('click',() => {
         span3.style.transform = "rotate(0deg) translateY(0px)"
         overlay.style.display = "none";
         forms.forEach((form) => {
-            form.style.display = "flex";            
+            form.style.display = "flex";        
         });
     }
 });
 
+// -------------------------------------------------------DARKMODE-----------------------------------------------
+const toggleBtn = document.getElementById('toggleBtn');
+const toggleDot = document.getElementById('toggleDot');
+// localStorage.setItem("mode", "light");
+console.log(localStorage.getItem('mode'));
+
+toggleBtn.addEventListener('click',() => {
+    if (localStorage.getItem("mode") != "dark") {
+        localStorage.setItem("mode", "dark");
+        toggleDot.style.transform = "translateX(36px)";
+        toggleBtn.style.backgroundColor = "var(--clr-btn1)";
+        document.body.classList.add("darkmode");
+    }else if (localStorage.getItem("mode") == "dark") {
+        localStorage.setItem("mode", "light");
+        toggleDot.style.transform = "translateX(0px)";
+        toggleBtn.style.backgroundColor = "#434343";
+        document.body.classList.remove("darkmode");
+    }
+    console.log(localStorage.getItem('mode'));
+});
+if (localStorage.getItem("mode") == "dark") {
+        toggleDot.style.transform = "translateX(36px)";
+        toggleBtn.style.backgroundColor = "var(--clr-btn1)";
+        document.body.classList.add("darkmode");
+    }else if(localStorage.getItem("mode") == "light"){
+        toggleDot.style.transform = "translateX(0px)";
+        toggleBtn.style.backgroundColor = "#434343";
+        document.body.classList.remove("darkmode");
+    }
 // -------------------------------------------------------AFFICHER FORMULAIRE------------------------------------
 const btnAjout = document.getElementById('btnAjout');
 const btnFermer = document.getElementById('btnFermer');

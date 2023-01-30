@@ -37,11 +37,41 @@
     --clr-trow2: #e2e2e2;
 }
 
+.darkmode {
+    --clr-background1: #1A1826;
+    --clr-background2: #323859;
+    --clr-background3: #292929;
+    --clr-background4: #e4e4e4;
+
+    --clr-text1: #1a1a1a;
+    --clr-text2: #f0f0f0;
+    --clr-text3: #8c8c8c;
+
+    --clr-btn1: #008cff;
+    --clr-btn1Hover: #005ba5;
+    --clr-btn2: #17b75f;
+    --clr-btn2Hover: #007b38;
+    --clr-btn3: #b71717;
+    --clr-btn3Hover: #7d0606;
+
+    --clr-nav: linear-gradient(
+        45deg,
+        rgb(26, 26, 26) 0%,
+        hsl(194deg 25% 13%) 50%,
+        hsl(189deg 15% 18%) 100%
+    );
+
+    --clr-thead: #2A3436;
+    --clr-trow1: #2b314f;
+    --clr-trow2: #262b46;
+}
+
 h1{
     font-weight: 500;
     text-transform: uppercase;
     width: 100%;
     text-align: center;
+    color: var(--clr-text2);
 }
 
 h2{
@@ -223,12 +253,12 @@ nav #imageProfil:hover .editProfil {
 }
 
 nav #imageProfil .editProfil .fa-pen-to-square {
-    color: var(--clr-text1);
+    color: #f1f1f1;
     font-size: 1.5rem;
 }
 
 nav #pseudo{
-    color: var(--clr-text1);
+    color: #f1f1f1;
     font-size: 1.5rem;
 }
 
@@ -267,7 +297,7 @@ nav #btnDeconnexion{
     height: 30px;
     padding: 0 20px;
     border-radius: 5px;
-    color: var(--clr-text1);
+    color: #f1f1f1;
     background-color: var(--clr-btn3);
     text-transform: uppercase;
 }
@@ -288,19 +318,41 @@ body{
     position: absolute;
     bottom: 70px;
     width: 60px;
-    height: 25px;
-    background-color: var(--clr-btn1);
+    height: 24px;
+    background-color:#434343;
     border-radius: 20px;
+    transition: .3s;
+}
+
+#toggleBtn:hover{
+    cursor: pointer;
 }
 
 #toggleDot{
     position: absolute;
-    top:3px;
-    left: 3px;
+    top:2px;
+    left: 2px;
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background-color: var(--clr-background2);
+    background-color: #f1f1f1;
+    transition: .3s;
+}
+
+.fa-moon{
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    font-size: 1.1rem;
+    color: #f1f1f1;
+}
+
+.fa-sun{
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    font-size: 1.1rem;
+    color: #f1f1f1;
 }
 
 
@@ -384,6 +436,7 @@ body{
     border-radius: 5px;
     padding: 5px 10px;
     transition: .3s;
+    color: var(--clr-text2);
 }
 
 .selecteur span:hover:not(.btnActive){
@@ -393,7 +446,7 @@ body{
 
 .btnActive{
     background-color: var(--clr-btn1);
-    color: var(--clr-text1);
+    color: #f1f1f1;
 }
 
 .tables{
@@ -419,12 +472,13 @@ body{
     th {
         padding: 10px;
         background-color: var(--clr-thead);
-        color: var(--clr-text1);
+        color: #f1f1f1;
         font-weight: 400;
     }
     
     td {
         padding: 10px;
+        color: var(--clr-text2);
     }
     
     tr:nth-child(even){
