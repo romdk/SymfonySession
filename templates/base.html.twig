@@ -31,7 +31,12 @@
                     <li><a class=" {% if ('referent' in page) %} btnActive{% endif %}" href="{{ path('app_referent') }}">Référents</a></li>   
                     <li><a class=" {% if ('stagiaire' in page) %} btnActive{% endif %}" href="{{ path('app_stagiaire') }}">Stagiaires</a></li>   
                     <li><a id="btnDeconnexion" href="{{ path('app_logout') }}">Deconnexion</a></li>
-                </ul>                
+                </ul>
+                <div id="toggleBtn">
+                    <i class="fa-regular fa-moon"></i> 
+                    <i class="fa-solid fa-sun"></i>
+                    <div id="toggleDot"></div>
+                </div>              
             </nav>
             {% endif %}
             {% block body %}
